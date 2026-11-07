@@ -1,0 +1,79 @@
+{
+  "test": {
+    "single": {
+      "michi": {
+        "id": "plink_1UZ6GpBH1CErKcp5ffmTvvSx",
+        "url": "https://buy.stripe.com/test_7sY8wOeCZ24behP90x8IU00",
+        "product": "prod_VaGoA51h8KwMZe",
+        "price": "price_1UZ6GoBH1CErKcp5Axnx0VlP"
+      },
+      "imanoomoi": {
+        "id": "plink_1UZ6GpBH1CErKcp5n1gZYdqg",
+        "url": "https://buy.stripe.com/test_28EdR89iF6krehPb8F8IU01",
+        "product": "prod_VaGoWsCWDu1mcy",
+        "price": "price_1UZ6GpBH1CErKcp5aZOV10sp"
+      },
+      "keshiki": {
+        "id": "plink_1UZ6GqBH1CErKcp5mFmV0nmK",
+        "url": "https://buy.stripe.com/test_3cI7sKdyV38fb5D2C98IU02",
+        "product": "prod_VaGodvISfP2LGO",
+        "price": "price_1UZ6GqBH1CErKcp5AyUCkZp5"
+      },
+      "sekai": {
+        "id": "plink_1UZ6GrBH1CErKcp5chDwvUHj",
+        "url": "https://buy.stripe.com/test_bJe9AScuR9wD7TrfoV8IU03",
+        "product": "prod_VaGo2zUslsTein",
+        "price": "price_1UZ6GrBH1CErKcp56uwF0uZ3"
+      },
+      "umakuikanai": {
+        "id": "plink_1UZ6GsBH1CErKcp559gLxtBN",
+        "url": "https://buy.stripe.com/test_6oUdR8gL75gn8Xv6Sp8IU04",
+        "product": "prod_VaGoB5uaeZfDBb",
+        "price": "price_1UZ6GsBH1CErKcp5kwBpxfWZ"
+      },
+      "donnakotomo": {
+        "id": "plink_1UZ6GtBH1CErKcp58tOOYoIF",
+        "url": "https://buy.stripe.com/test_3cIdR83YleQXddL4Kh8IU05",
+        "product": "prod_VaGoujSizb1s5S",
+        "price": "price_1UZ6GsBH1CErKcp5JfTRqa99"
+      },
+      "sora": {
+        "id": "plink_1UZ6GtBH1CErKcp57HUxQFhx",
+        "url": "https://buy.stripe.com/test_dRm28qcuR8sz1v37Wt8IU06",
+        "product": "prod_VaGot3Te6wBhDj",
+        "price": "price_1UZ6GtBH1CErKcp5NnSAZlQ5"
+      },
+      "ai": {
+        "id": "plink_1UZ6GuBH1CErKcp5DabkbCfa",
+        "url": "https://buy.stripe.com/test_eVq6oGdyVcIPflTa4B8IU07",
+        "product": "prod_VaGoXCYw6ZKJAf",
+        "price": "price_1UZ6GuBH1CErKcp5a3frKr0W"
+      },
+      "waratte": {
+        "id": "plink_1UZ6GvBH1CErKcp55vnxGcFE",
+        "url": "https://buy.stripe.com/test_14AeVc2UhcIP3Db5Ol8IU08",
+        "product": "prod_VaGorGGHlnqLCu",
+        "price": "price_1UZ6GvBH1CErKcp5BIqX55IP"
+      },
+      "watashinome": {
+        "id": "plink_1UZ6GwBH1CErKcp59rBZD9TC",
+        "url": "https://buy.stripe.com/test_28E3cu66t38f5Lj2C98IU09",
+        "product": "prod_VaGojMcD6lFP3A",
+        "price": "price_1UZ6GvBH1CErKcp5T1pg2YrR"
+      }
+    },
+    "bundle3": {
+      "id": "plink_1UZ6GwBH1CErKcp5fs7sMTvU",
+      "url": "https://buy.stripe.com/test_9B69ASbqN7ov4HfekR8IU0a",
+      "product": "prod_VaGo6zBpa1e3av",
+      "price": "price_1UZ6GwBH1CErKcp560fipScu"
+    },
+    "setAll": {
+      "id": "plink_1UZ6GxBH1CErKcp5tjAbvek0",
+      "url": "https://buy.stripe.com/test_7sY6oG0M99wDc9H6Sp8IU0b",
+      "product": "prod_VaGoljvzHam0Aj",
+      "price": "price_1UZ6GxBH1CErKcp5dCgDGOQE"
+    }
+  },
+  "updatedAt": "2026-11-07T10:00:57.434Z"
+}

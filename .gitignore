@@ -39,3 +39,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# pdf.js の配布ファイル（scripts/copy-pdfjs.mjs が生成）
+/public/pdfjs/
+
+# 設定例は Git に含める
+!.env.example
+
+# 差し替え前の画像（手元の控え）・元の大きなポストカード画像（サイトは web/ の軽量版を使う）
+/_replaced/
+/src/assets/postcards/*.png

@@ -3,20 +3,31 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "node scripts/copy-pdfjs.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/copy-pdfjs.mjs",
     "build": "next build",
-    "start": "next start"
+    "start": "next start",
+    "dayori:import": "node scripts/dayori-import.mjs",
+    "stripe:links": "node scripts/stripe-payment-links.mjs",
+    "build:pages": "GITHUB_PAGES=true NEXT_PUBLIC_PAYMENTS=links next build",
+    "prebuild:pages": "node scripts/copy-pdfjs.mjs"
   },
   "dependencies": {
+    "lucide-react": "^1.69.0",
     "next": "16.4.5",
+    "pdfjs-dist": "^6.5.438",
     "react": "19.3.0",
-    "react-dom": "19.3.0"
+    "react-dom": "19.3.0",
+    "server-only": "^0.0.1",
+    "stripe": "^23.0.0"
   },
   "devDependencies": {
     "@tailwindcss/turbopack": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "pdf-lib": "^1.17.1",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
