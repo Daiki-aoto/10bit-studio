@@ -1,6 +1,6 @@
 /**
  * ポストカードの価格・送料・支払い・返品条件。
- * 価格は確定情報。送料・発送方法・支払い方法・返品条件は「未確定」として管理し、
+ * 価格・送料は確定情報。支払い方法・返品条件は「未確定」として管理し、
  * 値が決まったら status を 'fixed' にして金額や本文を入れる。
  */
 export const postcardPrice = {
@@ -21,12 +21,15 @@ export interface ShippingMethod {
   note: string;
 }
 
+/** 送料：全国一律150円（定形郵便110円＋封筒・台紙代）。離島（中島）からでも郵便料金は全国一律 */
+export const SHIPPING_FEE = 150;
+
 export const shipping: { status: 'tbd' | 'fixed'; methods: ShippingMethod[]; note: string } = {
-  status: 'tbd',
+  status: 'fixed',
   methods: [
-    { id: 'post', label: '郵送', fee: null, note: '発送方法・送料は未確定です。確定後にご案内します。' },
+    { id: 'teikei', label: '定形郵便（追跡なし）', fee: SHIPPING_FEE, note: `全国一律${SHIPPING_FEE}円。定形郵便（追跡なし）でお送りします。曲がらないよう台紙を入れて発送します。` },
   ],
-  note: '送料・発送方法は現在調整中です。',
+  note: `送料は全国一律${SHIPPING_FEE}円です（定形郵便・追跡なし）。`,
 };
 
 export const payment: Undecided = {

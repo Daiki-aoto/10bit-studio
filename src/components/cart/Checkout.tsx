@@ -43,7 +43,7 @@ function Totals({ s, compact = false }: { s: CartSummary; compact?: boolean }) {
         <div className="flex justify-between"><dt>全10種類セット ×{s.setCount}</dt><dd>{yen(s.setTotal)}</dd></div>
       )}
       <div className="flex justify-between border-t border-line pt-3 font-medium"><dt>商品小計</dt><dd>{yen(s.subtotal)}</dd></div>
-      <div className="flex items-center justify-between"><dt className="flex items-center gap-2">送料 <TbdBadge /></dt><dd className="text-ink-2">確定後にご案内</dd></div>
+      <div className="flex items-center justify-between"><dt className="flex items-center gap-2">送料{s.shippingFee === null && <TbdBadge />}</dt><dd className={s.shippingFee === null ? 'text-ink-2' : ''}>{s.shippingFee === null ? '確定後にご案内' : yen(s.shippingFee)}</dd></div>
       <div className={`flex items-baseline justify-between border-t border-charcoal pt-3 ${compact ? '' : 'mt-1'}`}>
         <dt>お支払い合計</dt>
         <dd className="text-right">
@@ -98,7 +98,7 @@ export function Checkout() {
       <div ref={topRef} className="scroll-mt-24">
         <Steps steps={['カート', 'お客様情報', '確認', '完了']} current={3} />
         <Done id={done.id} title="ご注文を受け付けました" kind="注文番号"
-          lines={[`${done.name} 様、ありがとうございます。`, '送料・お支払い方法が確定次第、メールでご案内する想定です。']}>
+          lines={[`${done.name} 様、ありがとうございます。`, 'お支払い方法が確定次第、メールでご案内する想定です。']}>
           <div className="w-full rounded-lg border border-line p-5 text-left"><Totals s={done.summary} compact /></div>
           <p className="text-[13px] text-ink-3">デモのため、注文は確定しておらず、商品は発送されません。</p>
         </Done>
@@ -215,7 +215,7 @@ export function Checkout() {
               <TextArea name="notes" label="備考" rows={3} value={info.notes} onChange={set('notes')} onBlur={blur('notes')} error={errors.notes} placeholder="贈り物用、ご要望など" />
 
               <div className="grid gap-3 rounded-lg border border-line p-5 text-sm">
-                <p className="flex items-center gap-2 font-medium">発送方法・送料 <TbdBadge /></p>
+                <p className="flex items-center gap-2 font-medium">発送方法・送料{shipping.status !== 'fixed' && <TbdBadge />}</p>
                 <p className="text-ink-2">{shipping.methods[0].note}</p>
                 <p className="mt-2 flex items-center gap-2 font-medium">お支払い方法 <TbdBadge /></p>
                 <p className="text-ink-2">{payment.note}</p>
@@ -256,8 +256,8 @@ export function Checkout() {
               <div className="grid gap-4 rounded-lg bg-sand/60 p-5 text-sm leading-relaxed">
                 <p className="flex gap-2"><CircleAlert className="mt-0.5 size-4 shrink-0 text-sea-deep" aria-hidden />
                   {stripe
-                    ? <>お支払い金額に送料は含まれていません。発送方法・送料は確定後に別途ご案内します。{returns.note}</>
-                    : <>送料・発送方法・お支払い方法・返品条件は未確定です。{returns.note}{DEMO_MODE && ' 現在はデモのため、注文は確定せず、商品は発送されません。'}</>}</p>
+                    ? <>{shipping.note}{returns.note}</>
+                    : <>{shipping.note}お支払い方法・返品条件は未確定です。{returns.note}{DEMO_MODE && ' 現在はデモのため、注文は確定せず、商品は発送されません。'}</>}</p>
                 <Checkbox name="agree" checked={agree} onChange={(c) => { setAgree(c); if (c) setAgreeErr(''); }} error={agreeErr}
                   label="上記の内容を確認しました" />
               </div>

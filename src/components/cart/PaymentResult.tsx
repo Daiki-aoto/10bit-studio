@@ -35,7 +35,7 @@ function LinksThanks() {
       <h2 className="mincho text-2xl leading-relaxed">ご注文ありがとうございます</h2>
       <p className="leading-loose text-ink-2">
         お支払いが完了すると、ご登録のメールアドレスに Stripe から領収書が届きます。
-        <br />発送方法・送料は、確定後に別途ご案内します。
+        <br />商品は定形郵便（追跡なし）でお送りします。
       </p>
       <p className="text-sm text-ink-3">領収書メールが届かない場合は、お手数ですがお問い合わせください。</p>
       <div className="mt-2 flex flex-wrap justify-center gap-3">
@@ -105,7 +105,7 @@ function CheckoutResult() {
       <p className="text-sm text-ink-2">注文番号　<span className="font-latin text-xl font-semibold tracking-widest text-charcoal">{info.orderNo}</span></p>
       <p className="leading-loose text-ink-2">
         お支払いが完了しました。{info.email && <>領収書を <b className="font-medium text-charcoal">{info.email}</b> にお送りします。</>}
-        <br />発送方法・送料は、確定後に別途ご案内します。
+        <br />商品は定形郵便（追跡なし）でお送りします。
       </p>
       <ul className="w-full border-t border-charcoal text-left text-sm">
         {info.items.map((it, i) => (

@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { postcards } from '@/data/postcards';
-import { postcardPrice, returns } from '@/data/pricing';
+import { postcardPrice, returns, shipping } from '@/data/pricing';
 import { bundle3Link, setAllLink } from '@/data/paymentLinks';
 import { btn } from '@/components/ui/primitives';
 
@@ -41,8 +41,8 @@ export function PurchaseGuide() {
               <li key={t} className="flex gap-3"><span className="font-latin text-lg text-sea">{i + 1}</span><span className="text-ink-2">{t}</span></li>
             ))}
           </ol>
-          <p className="mt-5 text-ink-3">お支払い金額に送料は含まれていません。発送方法・送料は確定後に別途ご案内します。{returns.note}</p>
-          <p className="mt-2 text-ink-3">いろいろな絵柄を組み合わせて4枚以上ほしい場合は、3枚セットと1枚を組み合わせてご購入ください。</p>
+          <p className="mt-5 text-ink-3">{shipping.note}1回のご注文ごとにかかります（同じ決済ページで枚数を増やしても150円のままです）。{returns.note}</p>
+          <p className="mt-2 text-ink-3">3枚セットと1枚など、別々にご購入いただくと、それぞれの決済に送料がかかります。いろいろな絵柄を4枚以上まとめてご希望の場合は、Instagram の DM でもご相談いただけます。</p>
         </section>
         <div className="grid grid-cols-5 content-center gap-2">
           {postcards.map((c) => (

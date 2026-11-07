@@ -14,6 +14,7 @@ import { readFileSync, writeFileSync, existsSync } from 'node:fs';
 import Stripe from 'stripe';
 
 const PRICES = { single: 350, bundle3: 1000, setAll: 3000 };
+const SHIPPING_FEE = 150; // src/data/pricing.ts の SHIPPING_FEE と合わせる
 const CARDS = [
   ['michi', '01', 'どこまでも、たどりつくまで'],
   ['imanoomoi', '02', '涙がかためた、笑顔が照らす道'],
@@ -43,13 +44,14 @@ const stripe = new Stripe(key);
 const prev = existsSync(OUT) ? JSON.parse(readFileSync(OUT, 'utf8')) : {};
 const prevMode = prev[mode] ?? {};
 
-const common = (productKey) => ({
+const common = (productKey, shippingRate) => ({
+  shipping_options: [{ shipping_rate: shippingRate }],
   shipping_address_collection: { allowed_countries: ['JP'] },
   phone_number_collection: { enabled: true },
   billing_address_collection: 'auto',
   submit_type: 'pay',
   custom_text: {
-    shipping_address: { message: '送料は含まれていません。発送方法・送料は確定後に別途ご案内します。' },
+    shipping_address: { message: `送料は全国一律${SHIPPING_FEE}円（定形郵便・追跡なし）です。` },
     submit: { message: 'お支払い完了後、ご登録のメールアドレスに領収書が届きます。' },
   },
   metadata: { product: productKey, source: 'github-pages' },
@@ -76,7 +78,7 @@ async function ensurePrice(productKey, name, description, amount, existing) {
 async function ensureLink(productKey, priceInfo, extra, existing) {
   const params = {
     line_items: [{ price: priceInfo.price, quantity: 1, adjustable_quantity: { enabled: true, minimum: 1, maximum: 30 } }],
-    ...common(productKey),
+    ...common(productKey, shippingRateId),
     ...extra,
   };
   if (existing?.id) {
@@ -93,8 +95,25 @@ async function ensureLink(productKey, priceInfo, extra, existing) {
   return { id: link.id, url: link.url, ...priceInfo };
 }
 
+/** 送料（Stripe の配送料金）。同じ金額のものがあれば再利用 */
+async function ensureShippingRate(existingId) {
+  if (existingId) {
+    const r = await stripe.shippingRates.retrieve(existingId);
+    if (r.active && r.fixed_amount?.amount === SHIPPING_FEE && r.fixed_amount?.currency === 'jpy') return r.id;
+  }
+  const r = await stripe.shippingRates.create({
+    display_name: '定形郵便（追跡なし）',
+    type: 'fixed_amount',
+    fixed_amount: { amount: SHIPPING_FEE, currency: 'jpy' },
+    metadata: { source: 'github-pages' },
+  });
+  return r.id;
+}
+const shippingRateId = await ensureShippingRate(prevMode.shippingRate);
+console.log(`✓ 送料 ${SHIPPING_FEE}円`);
+
 const designOptions = CARDS.map(([id, no, title]) => ({ label: `No.${no}『${title}』`.slice(0, 100), value: id }));
-const result = { single: {}, bundle3: null, setAll: null };
+const result = { shippingRate: shippingRateId, single: {}, bundle3: null, setAll: null };
 
 for (const [id, no, title] of CARDS) {
   const k = `single-${id}`;

@@ -1,5 +1,6 @@
 {
   "test": {
+    "shippingRate": "shr_1UZ6mqBH1CErKcp5wkqH7aQz",
     "single": {
       "michi": {
         "id": "plink_1UZ6GpBH1CErKcp5ffmTvvSx",
@@ -75,5 +76,5 @@
       "price": "price_1UZ6GxBH1CErKcp5dCgDGOQE"
     }
   },
-  "updatedAt": "2026-11-07T10:00:57.434Z"
+  "updatedAt": "2026-11-07T10:24:03.717Z"
 }

@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
 import { postcards, credit, productSummary } from '@/data/postcards';
-import { postcardPrice } from '@/data/pricing';
+import { postcardPrice, shipping } from '@/data/pricing';
 import { Reveal, RiseText } from '@/components/ui/Reveal';
 import { ButtonLink, Container, Note } from '@/components/ui/primitives';
 import { PAYMENTS } from '@/data/site';
@@ -47,8 +47,8 @@ export default function PostcardsPage() {
           </Link>
         </Reveal>
         <Note className="mt-4">{PAYMENTS === 'links'
-          ? '3枚セットは、決済ページで3枚の絵柄をそれぞれ選べます（同じ絵柄も可）。送料は別途ご案内します。'
-          : '3枚ごとに、カートで自動的にセット価格（1,000円）になります。※セット価格の適用ルールは確認中です。送料は未確定です。'}</Note>
+          ? `3枚セットは、決済ページで3枚の絵柄をそれぞれ選べます（同じ絵柄も可）。${shipping.note}`
+          : `3枚ごとに、カートで自動的にセット価格（1,000円）になります。※セット価格の適用ルールは確認中です。${shipping.note}`}</Note>
       </Container>
 
       {/* 一覧 */}
