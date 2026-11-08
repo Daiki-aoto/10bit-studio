@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { absoluteUrl } from '@/lib/asset';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 import { ArrowLeft, ArrowRight, Download } from 'lucide-react';
@@ -22,7 +23,8 @@ export async function generateMetadata({ params }: PageProps<'/dayori/[slug]'>):
   return {
     title: `${dayori.name} ${issueLabel(iss)} ${iss.name}`,
     description: iss.summary ?? `${dayori.name} ${iss.name}（${iss.issued}発行）。`,
-    openGraph: iss.cover ? { images: [{ url: iss.cover }] } : undefined,
+    openGraph: iss.cover ? { images: [{ url: absoluteUrl(iss.cover) }] } : undefined,
+    twitter: iss.cover ? { card: 'summary_large_image', images: [absoluteUrl(iss.cover)] } : undefined,
   };
 }
 

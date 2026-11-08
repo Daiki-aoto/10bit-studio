@@ -5,18 +5,22 @@ import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { CartToast, DemoBanner } from '@/components/layout/Chrome';
 import { site, profile } from '@/data/site';
+import { absoluteUrl, asset } from '@/lib/asset';
 import './globals.css';
 
 const cormorant = Cormorant_Garamond({ subsets: ['latin'], weight: ['500', '600'], style: ['normal', 'italic'], variable: '--font-cormorant', display: 'swap' });
 const shippori = Shippori_Mincho_B1({ subsets: ['latin'], weight: ['500', '700'], variable: '--font-shippori', display: 'swap', preload: false });
 const noto = Noto_Sans_JP({ subsets: ['latin'], weight: ['400', '500', '700'], variable: '--font-noto', display: 'swap', preload: false });
 
+/** SNS でシェアされたときの画像（public/og.jpg・1200×630） */
+const ogImage = { url: absoluteUrl(asset('/og.jpg')), width: 1200, height: 630, alt: `${site.brand}｜写真と詩のポストカード・思い出ムービー・映像制作` };
+
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
   title: { default: `${site.brand}｜写真と詩のポストカード・映像制作`, template: `%s｜${site.brand}` },
   description: site.description,
-  openGraph: { type: 'website', locale: 'ja_JP', siteName: site.brand, description: site.description },
-  twitter: { card: 'summary_large_image' },
+  openGraph: { type: 'website', locale: 'ja_JP', siteName: site.brand, description: site.description, images: [ogImage] },
+  twitter: { card: 'summary_large_image', images: [ogImage.url] },
   // Google Search Console の所有権確認（公開してよい値）
   verification: { google: 'CKoBYx8hebYZr0A9bJTHkFMPa-xzDJtu9giPFlKX-Ko' },
 };

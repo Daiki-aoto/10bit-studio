@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { absoluteUrl } from '@/lib/asset';
 import Image from 'next/image';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
@@ -27,7 +28,8 @@ export async function generateMetadata({ params }: PageProps<'/postcards/[id]'>)
   return {
     title: `No.${card.no}『${card.title}』— ポストカード`,
     description: `${card.poem.slice(0, 3).join(' ')}… ${productSummary}`,
-    openGraph: { images: [{ url: card.image.src, width: card.image.width, height: card.image.height }] },
+    openGraph: { images: [{ url: absoluteUrl(card.image.src), width: card.image.width, height: card.image.height }] },
+    twitter: { card: 'summary_large_image', images: [absoluteUrl(card.image.src)] },
   };
 }
 

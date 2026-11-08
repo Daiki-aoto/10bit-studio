@@ -5,3 +5,14 @@
  */
 export const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? '';
 export const asset = (path: string) => (path.startsWith('/') && !path.startsWith('//') ? `${BASE_PATH}${path}` : path);
+
+/**
+ * SNS のシェア画像（og:image）用の完全なURL。
+ * 画像の src はすでに BASE_PATH 付きなので、metadataBase（BASE_PATH 付き）に任せると
+ * /10bit-studio/10bit-studio/… と二重になる。そのためドメインだけを前に付ける。
+ */
+export const absoluteUrl = (src: string) => {
+  if (!src.startsWith('/') || src.startsWith('//')) return src;
+  const origin = new URL(process.env.NEXT_PUBLIC_SITE_URL ?? 'https://example.com').origin;
+  return `${origin}${src}`;
+};
