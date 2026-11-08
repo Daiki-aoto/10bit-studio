@@ -84,7 +84,6 @@ export default function DayoriPage() {
         <p className="flex items-start gap-2 text-[13px] leading-relaxed text-ink-2"><Info className="mt-0.5 size-4 shrink-0" aria-hidden />{dayori.disclaimer}</p>
       </Container>
 
-{SHOW_DRAFTS && (<>
       {/* 特集風の読み物 */}
       <section className="py-20 sm:py-28">
         <Container>
@@ -116,16 +115,12 @@ export default function DayoriPage() {
         </Container>
       </section>
 
-      </>)}
-
-      {!SHOW_DRAFTS && (
-        <Container className="py-16 sm:py-20">
-          <Reveal className="mx-auto max-w-3xl border-y border-charcoal py-12 text-center">
-            <p className="mincho text-[clamp(20px,2.4vw,28px)] leading-loose">「{dayori.backCoverQuote}」</p>
-            <p className="mt-4 text-[13px] text-ink-3">— {issueLabel(latest)} 裏表紙より</p>
-          </Reveal>
-        </Container>
-      )}
+      <Container className="py-16 sm:py-20">
+        <Reveal className="mx-auto max-w-3xl border-y border-charcoal py-12 text-center">
+          <p className="mincho text-[clamp(20px,2.4vw,28px)] leading-loose">「{dayori.backCoverQuote}」</p>
+          <p className="mt-4 text-[13px] text-ink-3">— {issueLabel(latest)} 裏表紙より</p>
+        </Reveal>
+      </Container>
 
       {/* 発行実績 */}
       <section className="bg-sand/50 py-20 sm:py-28">

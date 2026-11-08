@@ -111,7 +111,6 @@ export default function MemoryMoviePage() {
         </Container>
       </section>
 
-{SHOW_DRAFTS && (<>
       {/* FAQ */}
       <section className="bg-sand/50 py-24 sm:py-32">
         <Container className="grid gap-12 lg:grid-cols-[1fr_1.8fr]">
@@ -132,8 +131,6 @@ export default function MemoryMoviePage() {
           </div>
         </Container>
       </section>
-
-      </>)}
 
       {/* 受注フォーム */}
       <section id="form" className="scroll-mt-20 py-24 sm:py-32">

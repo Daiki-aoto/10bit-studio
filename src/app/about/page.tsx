@@ -58,8 +58,8 @@ export default function AboutPage() {
         <figcaption className="mx-auto mt-4 max-w-5xl text-[13px] text-ink-3">活動拠点の中島。写真は ポストカード No.{island.no}『{island.title}』より</figcaption>
       </Reveal>
 
-      {/* インタビュー（仮原稿：本人確認後に SHOW_DRAFTS で表示） */}
-      {SHOW_DRAFTS && <Container className="py-24 sm:py-32">
+      {/* インタビュー */}
+      <Container className="py-24 sm:py-32">
         <div className="mx-auto max-w-3xl">
           <Reveal className="mb-12 flex items-center gap-3"><p className="eyebrow">Interview</p><DraftBadge label="仮原稿・本人確認待ち" /></Reveal>
           <div className="space-y-16">
@@ -74,8 +74,7 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-      </Container>}
-      {!SHOW_DRAFTS && <div className="py-12 sm:py-16" />}
+      </Container>
 
       {/* これまでの活動 */}
       <section className="bg-paper-2 py-24 sm:py-32">
@@ -83,7 +82,6 @@ export default function AboutPage() {
           <Reveal>
             <p className="eyebrow">Works &amp; History</p>
             <h2 className="mincho mt-3 text-2xl">これまでの活動</h2>
-            {SHOW_DRAFTS && <p className="mt-5 text-sm leading-relaxed text-ink-2">掲載内容は本人確認のうえ公開します。<DraftBadge className="ml-1" label="要確認" /></p>}
             <p className="mt-8 text-sm text-ink-2">主な使用ツール</p>
             <p className="mt-1 font-latin text-lg tracking-wider">{tools.join(' / ')}</p>
           </Reveal>

@@ -76,8 +76,8 @@ export default function VideoProductionPage() {
 
       {/* 流れ・料金 */}
       <section className="bg-charcoal py-24 text-paper sm:py-32">
-        <Container className={`grid gap-16 ${SHOW_DRAFTS ? 'lg:grid-cols-[1.4fr_1fr]' : 'max-w-3xl'}`}>
-          {SHOW_DRAFTS && <div>
+        <Container className="grid gap-16 lg:grid-cols-[1.4fr_1fr]">
+          <div>
             <Reveal className="flex items-center gap-3"><p className="eyebrow text-paper/70">Flow</p><DraftBadge label="仮原稿" className="border-paper/40 text-paper/70" /></Reveal>
             <h2 className="mincho mt-3 text-2xl">制作の流れ</h2>
             <ol className="mt-10 grid gap-x-8 sm:grid-cols-2">
@@ -88,7 +88,7 @@ export default function VideoProductionPage() {
                 </Reveal>
               ))}
             </ol>
-          </div>}
+          </div>
           <Reveal className="self-start rounded-xl border border-paper/25 p-8">
             <p className="eyebrow text-paper/70">Price</p>
             <h2 className="mincho mt-3 text-2xl">料金について</h2>
