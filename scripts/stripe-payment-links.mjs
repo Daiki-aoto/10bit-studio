@@ -6,6 +6,7 @@
  *   npm run stripe:links                              … 作成（既にあれば価格・設定を更新）
  *   npm run stripe:links -- --site https://<ユーザー名>.github.io/10bit-studio
  *                                                     … 決済後にサイトの「ありがとう」ページへ戻す
+ *   npm run stripe:links -- --live --site https://…   … 本番用（.env.local の STRIPE_LIVE_SECRET_KEY を使う）
  *
  * 作るリンク：絵柄ごとの1枚（10本）・3枚セット（絵柄を3つ選ぶ）・全10種類セット
  * 価格は src/data/pricing.ts と同じ値を使う（下の PRICES を変えたら pricing.ts も合わせる）。
@@ -34,10 +35,16 @@ const env = Object.fromEntries(
   (existsSync('.env.local') ? readFileSync('.env.local', 'utf8') : '').split('\n')
     .map((l) => l.match(/^([A-Z_]+)=(.*)$/)).filter(Boolean).map((m) => [m[1], m[2].trim()]),
 );
-const key = process.env.STRIPE_SECRET_KEY || env.STRIPE_SECRET_KEY;
-if (!key) { console.error('STRIPE_SECRET_KEY が .env.local にありません'); process.exit(1); }
-const mode = /_live_/.test(key) ? 'live' : 'test';
 const args = process.argv.slice(2);
+// --live のときは本番用の鍵（STRIPE_LIVE_SECRET_KEY）、それ以外はテスト用の鍵（STRIPE_SECRET_KEY）を使う
+const wantLive = args.includes('--live');
+const keyName = wantLive ? 'STRIPE_LIVE_SECRET_KEY' : 'STRIPE_SECRET_KEY';
+const key = process.env[keyName] || env[keyName];
+if (!key) { console.error(`${keyName} が .env.local にありません`); process.exit(1); }
+const mode = /^(sk|rk)_live_/.test(key) ? 'live' : /^(sk|rk)_test_/.test(key) ? 'test' : null;
+if (!mode) { console.error(`${keyName} の形が正しくありません（sk_ または rk_ で始まる鍵）`); process.exit(1); }
+if (wantLive && mode !== 'live') { console.error('--live ですが、本番用（_live_）の鍵ではありません'); process.exit(1); }
+if (!wantLive && mode !== 'test') { console.error('テスト用の欄に本番用の鍵が入っています。本番は --live を付けて STRIPE_LIVE_SECRET_KEY を使ってください'); process.exit(1); }
 const site = (args[args.indexOf('--site') + 1] && args.includes('--site')) ? args[args.indexOf('--site') + 1].replace(/\/$/, '') : null;
 const stripe = new Stripe(key);
 

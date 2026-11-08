@@ -76,5 +76,82 @@
       "price": "price_1UZ6GxBH1CErKcp5dCgDGOQE"
     }
   },
-  "updatedAt": "2026-11-07T10:24:03.717Z"
+  "updatedAt": "2026-11-08T00:05:22.297Z",
+  "live": {
+    "shippingRate": "shr_1UZJbfBOGvkwutWlzg3evSAZ",
+    "single": {
+      "michi": {
+        "id": "plink_1UZJbgBOGvkwutWlr0xv582S",
+        "url": "https://buy.stripe.com/28EfZg8g914d27kaJaffy0c",
+        "product": "prod_VaUa36E15C3KUa",
+        "price": "price_1UZJbgBOGvkwutWlgR4Jd18p"
+      },
+      "imanoomoi": {
+        "id": "plink_1UZJbhBOGvkwutWlM2Ul1LT6",
+        "url": "https://buy.stripe.com/8x2cN49kdaENeU618Affy0d",
+        "product": "prod_VaUad4MsPMwDUy",
+        "price": "price_1UZJbhBOGvkwutWlh1cue43C"
+      },
+      "keshiki": {
+        "id": "plink_1UZJbiBOGvkwutWl6VpbWzlC",
+        "url": "https://buy.stripe.com/00wbJ0eExeV3dQ24kMffy0e",
+        "product": "prod_VaUaihUgygDYxz",
+        "price": "price_1UZJbiBOGvkwutWlJS1MqsyP"
+      },
+      "sekai": {
+        "id": "plink_1UZJbjBOGvkwutWlmQf5dEaf",
+        "url": "https://buy.stripe.com/eVq7sKfIB9AJ5jw5oQffy0f",
+        "product": "prod_VaUaPUrF25VFrA",
+        "price": "price_1UZJbiBOGvkwutWl2pTgiti7"
+      },
+      "umakuikanai": {
+        "id": "plink_1UZJbkBOGvkwutWlYRYufGTQ",
+        "url": "https://buy.stripe.com/fZubJ0cwp9AJfYacRiffy0g",
+        "product": "prod_VaUaX4Q1tpIA2V",
+        "price": "price_1UZJbjBOGvkwutWlDpPbP4zH"
+      },
+      "donnakotomo": {
+        "id": "plink_1UZJbkBOGvkwutWlwE6U1DLN",
+        "url": "https://buy.stripe.com/aFaeVc9kd4gp27kg3uffy0h",
+        "product": "prod_VaUa8YFcr7iQHO",
+        "price": "price_1UZJbkBOGvkwutWlpAICBMOy"
+      },
+      "sora": {
+        "id": "plink_1UZJblBOGvkwutWlA1Rmr3hs",
+        "url": "https://buy.stripe.com/aFa28qgMF28h9zMg3uffy0i",
+        "product": "prod_VaUaHBjzk981BS",
+        "price": "price_1UZJblBOGvkwutWlrIOlYXsb"
+      },
+      "ai": {
+        "id": "plink_1UZJbmBOGvkwutWlQ7OCmB8m",
+        "url": "https://buy.stripe.com/3cIeVc8g97sBdQ28B2ffy0j",
+        "product": "prod_VaUaP5s4KAIuYA",
+        "price": "price_1UZJbmBOGvkwutWlWax4Sg4G"
+      },
+      "waratte": {
+        "id": "plink_1UZJbnBOGvkwutWl7VI71yt6",
+        "url": "https://buy.stripe.com/dRm3cufIBaEN7rE04wffy0k",
+        "product": "prod_VaUaB6FnDA7TR8",
+        "price": "price_1UZJbnBOGvkwutWlSvzK8nZz"
+      },
+      "watashinome": {
+        "id": "plink_1UZJboBOGvkwutWlNedMCVEk",
+        "url": "https://buy.stripe.com/7sYdR88g93cl8vIcRiffy0l",
+        "product": "prod_VaUaXYJPbOQoVD",
+        "price": "price_1UZJbnBOGvkwutWlgms3FRwe"
+      }
+    },
+    "bundle3": {
+      "id": "plink_1UZJbpBOGvkwutWlDpp2ynVN",
+      "url": "https://buy.stripe.com/fZu3cugMF7sB4fs9F6ffy0m",
+      "product": "prod_VaUb71yaZx98H6",
+      "price": "price_1UZJboBOGvkwutWlOb3DbCAv"
+    },
+    "setAll": {
+      "id": "plink_1UZJbqBOGvkwutWlp2bI1wxB",
+      "url": "https://buy.stripe.com/7sY3cu9kdaENcLY8B2ffy0n",
+      "product": "prod_VaUb52SbnqO1cX",
+      "price": "price_1UZJbpBOGvkwutWlZNSJl9Iy"
+    }
+  }
 }
