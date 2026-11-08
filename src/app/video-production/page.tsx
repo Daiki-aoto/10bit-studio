@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import { ExternalLink } from 'lucide-react';
-import { videoServices, experience, videoFlow, videoPricing, videoWorks } from '@/data/videoProduction';
+import { experience, videoFlow, videoPricing, videoWorks } from '@/data/videoProduction';
 import { WorkFeature } from '@/components/video/WorkFeature';
+import { ServiceExplorer } from '@/components/video/ServiceExplorer';
 import { HeroVideo } from '@/components/ui/HeroVideo';
 import { heroVideo } from '@/data/media';
 import { site, SHOW_DRAFTS } from '@/data/site';
@@ -41,14 +42,7 @@ export default function VideoProductionPage() {
       <section className="bg-paper-2 py-24 sm:py-32">
         <Container>
           <SectionHeading en="Services" ja="対応できる業務" />
-          <ul className="mt-14 grid gap-px overflow-hidden rounded-xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4">
-            {videoServices.map((s, i) => (
-              <Reveal as="li" key={s.title} delay={(i % 4) * 70} className="grid min-h-44 content-between gap-6 bg-paper p-6 transition hover:bg-sand/50">
-                <span className="font-latin text-sm font-semibold tracking-[.24em] text-sea">{String(i + 1).padStart(2, '0')} ／ {s.en}</span>
-                <span className="mincho text-[17px] leading-relaxed">{s.title}</span>
-              </Reveal>
-            ))}
-          </ul>
+          <ServiceExplorer />
         </Container>
       </section>
 

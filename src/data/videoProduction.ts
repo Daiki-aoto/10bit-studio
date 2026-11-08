@@ -4,14 +4,21 @@
  */
 import { asset } from '@/lib/asset';
 export const videoServices = [
-  { title: '企業・店舗のPR動画', en: 'Promotion' },
-  { title: '商品紹介動画', en: 'Product' },
-  { title: '観光・地域紹介動画', en: 'Local' },
-  { title: 'インタビュー動画', en: 'Interview' },
-  { title: 'イベント撮影・記録映像', en: 'Event' },
-  { title: 'YouTube動画編集', en: 'YouTube' },
-  { title: 'SNS向けショート動画', en: 'Short' },
-  { title: '撮影から編集までの一括対応', en: 'All in one' },
+  { id: 'pr', title: '企業・店舗のPR動画', en: 'Promotion' },
+  { id: 'product', title: '商品紹介動画', en: 'Product' },
+  { id: 'local', title: '観光・地域紹介動画', en: 'Local' },
+  { id: 'interview', title: 'インタビュー動画', en: 'Interview' },
+  { id: 'event', title: 'イベント撮影・記録映像', en: 'Event' },
+  { id: 'youtube', title: 'YouTube動画編集', en: 'YouTube' },
+  { id: 'short', title: 'SNS向けショート動画', en: 'Short' },
+  { id: 'all', title: '撮影から編集までの一括対応', en: 'All in one' },
+] as const;
+
+export type VideoServiceId = (typeof videoServices)[number]['id'];
+
+/** サイト内に置いた動画の実績（YouTube 以外）。動画ファイルの設定は data/media.ts */
+export const localVideoWorks: { key: string; title: string; category: string; year: string; services: VideoServiceId[] }[] = [
+  { key: 'oura-taiko', title: '大浦太鼓まつり 2026', category: 'イベント撮影・記録映像', year: '2026', services: ['event'] },
 ];
 
 /** 経験・実績（事実ベース・取引先名なし）。出典：10bitstudio 詳細データ.txt */
@@ -56,6 +63,8 @@ export interface VideoWork {
   credits: string[];
   thumbnail: string;
   year?: string;
+  /** 「対応できる業務」のどれに当てはまるか（カードを押すと表示される） */
+  services: VideoServiceId[];
 }
 
 export const videoWorks: VideoWork[] = [
@@ -68,6 +77,7 @@ export const videoWorks: VideoWork[] = [
     credits: [],
     thumbnail: asset('/works/pej2fsbvRcI.jpg'),
     year: '2026',
+    services: ['local'],
   },
   {
     youtubeId: 'GKr61s4DxCA',
@@ -78,6 +88,7 @@ export const videoWorks: VideoWork[] = [
     credits: [],
     thumbnail: asset('/works/GKr61s4DxCA.jpg'),
     year: '2026',
+    services: ['interview'],
   },
   {
     youtubeId: 'lmUmzNIeIW4',
@@ -88,6 +99,7 @@ export const videoWorks: VideoWork[] = [
     credits: [],
     thumbnail: asset('/works/lmUmzNIeIW4.jpg'),
     year: '2026',
+    services: ['interview'],
   },
 ];
 
