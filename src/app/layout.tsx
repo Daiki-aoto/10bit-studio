@@ -17,6 +17,8 @@ export const metadata: Metadata = {
   description: site.description,
   openGraph: { type: 'website', locale: 'ja_JP', siteName: site.brand, description: site.description },
   twitter: { card: 'summary_large_image' },
+  // Google Search Console の所有権確認（公開してよい値）
+  verification: { google: 'CKoBYx8hebYZr0A9bJTHkFMPa-xzDJtu9giPFlKX-Ko' },
 };
 
 export const viewport: Viewport = { themeColor: '#f7f5f0' };
