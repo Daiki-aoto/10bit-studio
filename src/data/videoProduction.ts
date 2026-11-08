@@ -69,6 +69,26 @@ export const videoWorks: VideoWork[] = [
     thumbnail: asset('/works/pej2fsbvRcI.jpg'),
     year: '2026',
   },
+  {
+    youtubeId: 'GKr61s4DxCA',
+    title: '【移住のリアル】島でART BOMBを立ち上げた理由！',
+    subtitle: '〜中島の未来を描く挑戦！〜',
+    description: 'YouTube チャンネル「中島おもろい人図鑑」のインタビュー映像。中島に移住し、島で ART BOMB を立ち上げた理由と、中島の未来に向けた挑戦を伺っています。',
+    category: 'インタビュー',
+    credits: [],
+    thumbnail: asset('/works/GKr61s4DxCA.jpg'),
+    year: '2026',
+  },
+  {
+    youtubeId: 'lmUmzNIeIW4',
+    title: '【離島留学】岐阜から移住した草分兄弟のリアルな日常',
+    subtitle: '〜中島おもろい人図鑑②〜',
+    description: 'YouTube チャンネル「中島おもろい人図鑑」のインタビュー映像。離島留学で岐阜から中島に移住した草分さんきょうだいの、島でのリアルな日常を紹介しています。',
+    category: 'インタビュー',
+    credits: [],
+    thumbnail: asset('/works/lmUmzNIeIW4.jpg'),
+    year: '2026',
+  },
 ];
 
 export const youtubeUrl = (id: string) => `https://youtu.be/${id}`;
