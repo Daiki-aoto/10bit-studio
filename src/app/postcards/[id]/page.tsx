@@ -78,7 +78,7 @@ export default async function PostcardDetail({ params }: PageProps<'/postcards/[
             <blockquote className="mincho mx-auto max-w-full overflow-x-auto sm:h-[21em] text-[17px] font-medium leading-[2.1] tracking-[.18em] [writing-mode:horizontal-tb] sm:[writing-mode:vertical-rl]">
               {card.poem.map((l, i) => <p key={i}>{l}</p>)}
             </blockquote>
-            <figcaption className="mt-6 text-right text-[13px] text-ink-3">詩：sachie mine</figcaption>
+            <figcaption className="mt-6 text-right text-[13px] text-ink-3">詩：sachie mine　<Link href="/postcards#poet" className="underline">sachie mine さんについて</Link></figcaption>
           </Reveal>
 
           <Reveal delay={250} className="mt-10">

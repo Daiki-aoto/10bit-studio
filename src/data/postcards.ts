@@ -23,6 +23,19 @@ export interface Postcard {
 }
 
 export const credit = 'PHOTO by Bit × sachie mine';
+
+/** 詩を書いた sachie mine さんの紹介（本人提供の情報より・2026-11-08） */
+export const poet = {
+  name: 'sachie mine',
+  photoAlt: '布に絵を描く sachie mine さん',
+  lead: '1986年、青森県生まれ。愛媛県・中島で島暮らしをしながら制作を行っています。',
+  body: [
+    'ジャンルにとらわれず、インスピレーションをもとに「心の中の光」を描くフリーアートを制作。壁画制作やオーダーメイドの絵画、各地での個展、イベント出店のほか、子どもたちに自由な表現を伝えるワークショップも行っています。',
+    '「松山デザインウィーク」のオープニングや「道後マルシェ」など、松山市のイベントでのライブペインティングや展示にも参加し、地域に根ざしたアート活動を続けています。',
+    '描いた絵を布に仕立てた、世界にひとつだけの服や小物の販売も。sachie_mine 名義で、ギターの弾き語りなどの音楽活動も行っています。',
+  ],
+  links: [{ label: '音楽活動 Instagram @sachie_music', href: 'https://www.instagram.com/sachie_music/' }],
+};
 export const productSummary =
   '愛媛県松山市の離島・中島で撮影した写真に、詩人・sachie mine さんの詩を添えたオリジナルポストカード。';
 

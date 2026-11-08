@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { postcards, productSummary } from '@/data/postcards';
+import { postcards, poet, productSummary } from '@/data/postcards';
+import poetPhoto from '@/assets/people/sachie-mine.jpg';
 import { postcardPrice, shipping } from '@/data/pricing';
 import { Reveal, RiseText } from '@/components/ui/Reveal';
 import { ButtonLink, Container, Note } from '@/components/ui/primitives';
@@ -58,6 +59,26 @@ export default function PostcardsPage() {
           <div className="grid gap-x-10 gap-y-20 sm:grid-cols-2 lg:grid-cols-3">
             {postcards.map((c, i) => <PostcardTile key={c.id} card={c} delay={(i % 3) * 90} />)}
           </div>
+        </Container>
+      </section>
+
+      {/* 詩を書いた人 */}
+      <section id="poet" aria-labelledby="poet-title" className="scroll-mt-20 border-t border-line py-20 sm:py-28">
+        <Container className="grid items-center gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-20">
+          <Reveal variant="img">
+            <Image src={poetPhoto} alt={poet.photoAlt} sizes="(min-width: 1024px) 55vw, 100vw" placeholder="blur" className="h-auto w-full" />
+          </Reveal>
+          <Reveal>
+            <p className="eyebrow">Poem by</p>
+            <h2 id="poet-title" className="mt-3 font-latin text-4xl font-semibold tracking-wider">{poet.name}</h2>
+            <p className="mincho mt-6 text-lg leading-relaxed">{poet.lead}</p>
+            <div className="mt-6 space-y-4 text-[15px] leading-[2.1] text-ink-2">{poet.body.map((t) => <p key={t}>{t}</p>)}</div>
+            <ul className="mt-8 grid gap-2 text-sm">
+              {poet.links.map((l) => (
+                <li key={l.href}><a href={l.href} target="_blank" rel="noopener noreferrer" className="link-line">{l.label}<span className="sr-only">（新しいタブで開きます）</span></a></li>
+              ))}
+            </ul>
+          </Reveal>
         </Container>
       </section>
 
