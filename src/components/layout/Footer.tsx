@@ -26,7 +26,11 @@ export function Footer() {
             <li><a href={site.links.portfolio} target="_blank" rel="noopener noreferrer" className="link-line">ポートフォリオ（中島だより）</a></li>
           </ul>
         </div>
-        <p className="mt-14 text-xs text-paper/50">© {site.brand} / Bit. 掲載写真・詩の無断転載を禁じます。</p>
+        <ul className="mt-14 flex flex-wrap gap-x-6 gap-y-2 text-xs text-paper/70">
+          <li><Link href="/tokushoho" className="link-line">特定商取引法に基づく表記</Link></li>
+          <li><Link href="/privacy" className="link-line">プライバシーポリシー</Link></li>
+        </ul>
+        <p className="mt-4 text-xs text-paper/50">© {site.brand} / Bit. 掲載写真・詩の無断転載を禁じます。</p>
       </div>
     </footer>
   );

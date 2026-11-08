@@ -1,5 +1,6 @@
 'use client';
 
+import Link from 'next/link';
 import { useRef, useState } from 'react';
 import { CircleAlert, Loader2 } from 'lucide-react';
 import { plans, uses } from '@/data/memoryMovie';
@@ -131,6 +132,7 @@ function MemoryMovieFormInner() {
           </div>
 
           <Honeypot onChange={setBotcheck} />
+          <p className="text-sm text-ink-3">送信いただいた内容は、<Link href="/privacy" className="underline">プライバシーポリシー</Link>にもとづいて取り扱います。</p>
           <div className="flex justify-end">
             <button type="submit" className={btn('primary', 'w-full sm:w-auto sm:min-w-64')}>入力内容を確認する</button>
           </div>

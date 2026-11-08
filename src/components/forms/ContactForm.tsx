@@ -100,6 +100,7 @@ function ContactFormInner() {
           <TextArea name="details" label="詳細・備考" value={v.details} onChange={onInput('details')} onBlur={onBlur('details')} error={errors.details}
             placeholder="時期、場所、ご予算の目安などがあればご記入ください" />
           <Honeypot onChange={setBotcheck} />
+          <p className="text-sm text-ink-3">送信いただいた内容は、<Link href="/privacy" className="underline">プライバシーポリシー</Link>にもとづいて取り扱います。</p>
           <div className="flex justify-end">
             <button type="submit" className={btn('primary', 'w-full sm:w-auto sm:min-w-64')}>入力内容を確認する</button>
           </div>

@@ -2,7 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowUpRight } from 'lucide-react';
 import { postcards } from '@/data/postcards';
-import { postcardPrice, returns, shipping } from '@/data/pricing';
+import { postcardPrice, returns, shipping, shipTiming } from '@/data/pricing';
 import { bundle3Link, setAllLink } from '@/data/paymentLinks';
 import { btn } from '@/components/ui/primitives';
 
@@ -41,7 +41,9 @@ export function PurchaseGuide() {
               <li key={t} className="flex gap-3"><span className="font-latin text-lg text-sea">{i + 1}</span><span className="text-ink-2">{t}</span></li>
             ))}
           </ol>
-          <p className="mt-5 text-ink-3">{shipping.note}1回のご注文ごとにかかります（同じ決済ページで枚数を増やしても150円のままです）。{returns.note}</p>
+          <p className="mt-5 text-ink-3">{shipping.note}1回のご注文ごとにかかります（同じ決済ページで枚数を増やしても150円のままです）。{shipTiming}</p>
+          <p className="mt-2 text-ink-3">{returns.note}</p>
+          <p className="mt-2 text-ink-3">販売条件は<Link href="/tokushoho" className="underline">特定商取引法に基づく表記</Link>、個人情報の扱いは<Link href="/privacy" className="underline">プライバシーポリシー</Link>をご覧ください。</p>
           <p className="mt-2 text-ink-3">3枚セットと1枚など、別々にご購入いただくと、それぞれの決済に送料がかかります。いろいろな絵柄を4枚以上まとめてご希望の場合は、Instagram の DM でもご相談いただけます。</p>
         </section>
         <div className="grid grid-cols-5 content-center gap-2">

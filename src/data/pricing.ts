@@ -32,12 +32,19 @@ export const shipping: { status: 'tbd' | 'fixed'; methods: ShippingMethod[]; not
   note: `送料は全国一律${SHIPPING_FEE}円です（定形郵便・追跡なし）。`,
 };
 
-export const payment: Undecided = {
-  status: 'tbd',
-  note: 'お支払い方法は未確定です（オンライン決済の導入を検討中）。',
+/** お支払い方法（Stripe の支払いリンク） */
+export const payment = {
+  status: 'fixed' as const,
+  methods: ['クレジットカード', 'Apple Pay', 'Google Pay'],
+  note: 'クレジットカード、Apple Pay、Google Pay（Stripe の決済ページ）でお支払いいただけます。',
 };
 
-export const returns: Undecided = {
-  status: 'tbd',
-  note: '返品・交換の条件は未確定です。',
+/** 発送の時期 */
+export const SHIP_WITHIN_DAYS = 7;
+export const shipTiming = `ご注文（お支払い）確定後、${SHIP_WITHIN_DAYS}日以内に発送します。`;
+
+/** 返品・交換（2026-11-08 本人決定） */
+export const returns = {
+  status: 'fixed' as const,
+  note: '破損・汚れ・ご注文と異なる商品が届いた場合は、到着後7日以内にご連絡ください。送料はこちらの負担で交換します。お客さまのご都合による返品・交換はお受けできません。',
 };

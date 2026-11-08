@@ -217,7 +217,7 @@ export function Checkout() {
               <div className="grid gap-3 rounded-lg border border-line p-5 text-sm">
                 <p className="flex items-center gap-2 font-medium">発送方法・送料{shipping.status !== 'fixed' && <TbdBadge />}</p>
                 <p className="text-ink-2">{shipping.methods[0].note}</p>
-                <p className="mt-2 flex items-center gap-2 font-medium">お支払い方法 <TbdBadge /></p>
+                <p className="mt-2 flex items-center gap-2 font-medium">お支払い方法</p>
                 <p className="text-ink-2">{payment.note}</p>
               </div>
             </form>
@@ -257,7 +257,7 @@ export function Checkout() {
                 <p className="flex gap-2"><CircleAlert className="mt-0.5 size-4 shrink-0 text-sea-deep" aria-hidden />
                   {stripe
                     ? <>{shipping.note}{returns.note}</>
-                    : <>{shipping.note}お支払い方法・返品条件は未確定です。{returns.note}{DEMO_MODE && ' 現在はデモのため、注文は確定せず、商品は発送されません。'}</>}</p>
+                    : <>{shipping.note}{returns.note}{DEMO_MODE && ' 現在はデモのため、注文は確定せず、商品は発送されません。'}</>}</p>
                 <Checkbox name="agree" checked={agree} onChange={(c) => { setAgree(c); if (c) setAgreeErr(''); }} error={agreeErr}
                   label="上記の内容を確認しました" />
               </div>
