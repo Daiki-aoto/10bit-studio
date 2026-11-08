@@ -6,6 +6,8 @@ import { yen } from '@/lib/pricing';
 import { Reveal, RiseText } from '@/components/ui/Reveal';
 import { ButtonLink, Container, DraftBadge, Note, PlaceholderMedia, SectionHeading } from '@/components/ui/primitives';
 import { MemoryMovieForm } from '@/components/forms/MemoryMovieForm';
+import { HeroVideo } from '@/components/ui/HeroVideo';
+import { heroVideo } from '@/data/media';
 
 export const metadata: Metadata = {
   title: 'Memory Movie — 思い出ムービー制作',
@@ -17,7 +19,7 @@ export default function MemoryMoviePage() {
     <>
       {/* ヒーロー */}
       <section className="bg-sea-deep text-paper">
-        <Container className={`grid gap-12 py-16 lg:items-center lg:py-24 ${SHOW_DRAFTS ? 'lg:grid-cols-[1fr_1.2fr]' : ''}`}>
+        <Container className="grid gap-12 py-16 lg:grid-cols-[1fr_1.2fr] lg:items-center lg:py-24">
           <div>
             <Reveal><p className="eyebrow text-paper/70">Memory Movie</p></Reveal>
             <RiseText as="h1" lines={['大切な思い出を、', '未来に残す。']} className="mincho mt-6 text-[clamp(30px,4.4vw,54px)] leading-[1.5]" />
@@ -29,9 +31,10 @@ export default function MemoryMoviePage() {
               </div>
             </Reveal>
           </div>
-          {SHOW_DRAFTS && <Reveal variant="img" delay={200}>
-            <PlaceholderMedia kind="video" label="完成した思い出ムービーのサンプル動画" ratio="16 / 9" className="rounded-lg text-ink-2" />
-          </Reveal>}
+          <Reveal as="figure" variant="img" delay={200}>
+            <HeroVideo config={heroVideo} className="aspect-video rounded-lg" />
+            <figcaption className="mt-3 text-[12px] text-paper/70">サンプル映像：{heroVideo.caption}</figcaption>
+          </Reveal>
         </Container>
       </section>
 
