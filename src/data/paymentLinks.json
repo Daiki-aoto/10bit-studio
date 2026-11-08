@@ -74,9 +74,51 @@
       "url": "https://buy.stripe.com/test_7sY6oG0M99wDc9H6Sp8IU0b",
       "product": "prod_VaGoljvzHam0Aj",
       "price": "price_1UZ6GxBH1CErKcp5dCgDGOQE"
+    },
+    "support": {
+      "once": {
+        "500": {
+          "id": "plink_1UZS0OBH1CErKcp5vtRjI8xS",
+          "url": "https://buy.stripe.com/test_14A3cu2Uh38f0qZccJ8IU0c",
+          "product": "prod_VadGKMP6VOvjAM",
+          "price": "price_1UZS0OBH1CErKcp5DMCefrcQ"
+        },
+        "1000": {
+          "id": "plink_1UZS0PBH1CErKcp54keHxBS8",
+          "url": "https://buy.stripe.com/test_4gM14mdyVeQX5Lj6Sp8IU0d",
+          "product": "prod_VadG1ccpwIsjVx",
+          "price": "price_1UZS0OBH1CErKcp5dIkgKOLK"
+        },
+        "3000": {
+          "id": "plink_1UZS0PBH1CErKcp5xpKuMIyu",
+          "url": "https://buy.stripe.com/test_dRm4gy52p6krddLfoV8IU0e",
+          "product": "prod_VadGCDmhv4uGLw",
+          "price": "price_1UZS0PBH1CErKcp5K7v3RW6l"
+        }
+      },
+      "monthly": {
+        "500": {
+          "id": "plink_1UZS0RBH1CErKcp5Cgy8QNlI",
+          "url": "https://buy.stripe.com/test_14A7sK52pcIPb5DdgN8IU0g",
+          "product": "prod_VadGIiAJYNWWm9",
+          "price": "price_1UZS0RBH1CErKcp5yW32lGNr"
+        },
+        "1000": {
+          "id": "plink_1UZS0SBH1CErKcp5UUYN1ZuK",
+          "url": "https://buy.stripe.com/test_4gM7sK9iFaAH0qZfoV8IU0h",
+          "product": "prod_VadGlDz51M5LXh",
+          "price": "price_1UZS0RBH1CErKcp5HZBd9y9p"
+        }
+      },
+      "free": {
+        "id": "plink_1UZS0QBH1CErKcp5HIvYpYTD",
+        "url": "https://buy.stripe.com/test_fZu4gy0M9aAHddL90x8IU0f",
+        "product": "prod_VadGHDA4r0kpEA",
+        "price": "price_1UZS0QBH1CErKcp5jT3yU5x9"
+      }
     }
   },
-  "updatedAt": "2026-11-08T00:05:22.297Z",
+  "updatedAt": "2026-11-08T09:04:19.145Z",
   "live": {
     "shippingRate": "shr_1UZJbfBOGvkwutWlzg3evSAZ",
     "single": {
@@ -152,6 +194,48 @@
       "url": "https://buy.stripe.com/7sY3cu9kdaENcLY8B2ffy0n",
       "product": "prod_VaUb52SbnqO1cX",
       "price": "price_1UZJbpBOGvkwutWlZNSJl9Iy"
+    },
+    "support": {
+      "once": {
+        "500": {
+          "id": "plink_1UZS1KBOGvkwutWlIqYLivI6",
+          "url": "https://buy.stripe.com/4gM28q7c5cMV7rE4kMffy0o",
+          "product": "prod_VadHdobhVjJIz4",
+          "price": "price_1UZS1KBOGvkwutWlMhRBzSLS"
+        },
+        "1000": {
+          "id": "plink_1UZS1LBOGvkwutWl4d8vl1yf",
+          "url": "https://buy.stripe.com/4gM5kCbsldQZ27k4kMffy0p",
+          "product": "prod_VadHTOZmvNkfhr",
+          "price": "price_1UZS1LBOGvkwutWloD7etABO"
+        },
+        "3000": {
+          "id": "plink_1UZS1MBOGvkwutWlf7GczA7Q",
+          "url": "https://buy.stripe.com/6oU6oG3ZTaEN3bo6sUffy0q",
+          "product": "prod_VadHDfbXiB5Bmp",
+          "price": "price_1UZS1MBOGvkwutWlDZQnECpF"
+        }
+      },
+      "monthly": {
+        "500": {
+          "id": "plink_1UZS1OBOGvkwutWlKbxxt8Fi",
+          "url": "https://buy.stripe.com/14A5kCgMFbIRbHU6sUffy0s",
+          "product": "prod_VadHS9ptHSuOXR",
+          "price": "price_1UZS1NBOGvkwutWlpb0xP87h"
+        },
+        "1000": {
+          "id": "plink_1UZS1PBOGvkwutWlWNX5HgHG",
+          "url": "https://buy.stripe.com/eVq14m8g93cl8vI7wYffy0t",
+          "product": "prod_VadH2S6BV4CGLT",
+          "price": "price_1UZS1OBOGvkwutWlzKgEN0SD"
+        }
+      },
+      "free": {
+        "id": "plink_1UZS1NBOGvkwutWlimLtxmRL",
+        "url": "https://buy.stripe.com/fZufZg53XcMV8vIbNeffy0r",
+        "product": "prod_VadHUU1jjLTiAE",
+        "price": "price_1UZS1NBOGvkwutWl6RAIHmuD"
+      }
     }
   }
 }

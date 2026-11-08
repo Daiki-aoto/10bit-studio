@@ -161,7 +161,8 @@ export const activities = [
 
 /**
  * 応援（寄付）。文面は募金箱の掲示物より。
- * 寄付方法・金額は未確定のため、methods は空。オンライン寄付を導入したら追加する。
+ * オンラインの応援は Stripe の支払いリンク（data/paymentLinks.ts の supportLinks）。お礼はメッセージのみ、
+ * 毎月の応援の方には年4回（新しい号が出るたびに）郵送する（2026-11-08 本人決定）。
  */
 export const support = {
   catch: '中島の今を、未来へ。',
@@ -175,5 +176,5 @@ export const support = {
   ],
   /** 例：{ label: 'オンラインで寄付する', href: 'https://...', kind: 'once' } */
   methods: [] as { label: string; href: string; kind: 'once' | 'monthly' }[],
-  methodsNote: 'オンラインでのご寄付・継続支援の方法は準備中です。現在は、募金箱でのご支援をお願いしています。',
+  methodsNote: 'クレジットカード・Apple Pay・Google Pay でご支援いただけます。島内では募金箱でのご支援も受け付けています。',
 };
