@@ -64,9 +64,9 @@ export default function PostcardsPage() {
 
       {/* 詩を書いた人 */}
       <section id="poet" aria-labelledby="poet-title" className="scroll-mt-20 border-t border-line py-20 sm:py-28">
-        <Container className="grid items-center gap-12 lg:grid-cols-[1.2fr_1fr] lg:gap-20">
-          <Reveal variant="img">
-            <Image src={poetPhoto} alt={poet.photoAlt} sizes="(min-width: 1024px) 55vw, 100vw" placeholder="blur" className="h-auto w-full" />
+        <Container className="grid items-center gap-12 lg:grid-cols-[minmax(0,.8fr)_minmax(0,1.2fr)] lg:gap-20">
+          <Reveal variant="img" className="mx-auto w-full max-w-md">
+            <Image src={poetPhoto} alt={poet.photoAlt} sizes="(min-width: 1024px) 448px, 90vw" placeholder="blur" className="h-auto w-full" />
           </Reveal>
           <Reveal>
             <p className="eyebrow">Poem by</p>
