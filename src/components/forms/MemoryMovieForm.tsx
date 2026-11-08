@@ -10,6 +10,7 @@ import { submit } from '@/lib/submit';
 import { btn } from '@/components/ui/primitives';
 import { ChoiceGroup, ConfirmList, SelectField, Steps, TextArea, TextField, Checkbox, focusFirstError } from './fields';
 import { Done } from './Done';
+import { Honeypot } from './Honeypot';
 
 const planOptions = [
   ...plans.map((p) => ({ value: p.id, label: `${p.name}プラン`, desc: `${p.price.toLocaleString()}円〜` })),
@@ -55,6 +56,7 @@ function MemoryMovieFormInner() {
   const [sending, setSending] = useState(false);
   const [sendErr, setSendErr] = useState('');
   const [doneId, setDoneId] = useState('');
+  const [botcheck, setBotcheck] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
   const topRef = useRef<HTMLDivElement>(null);
 
@@ -77,7 +79,15 @@ function MemoryMovieFormInner() {
 
   const send = async () => {
     setSending(true); setSendErr('');
-    const res = await submit('memory-movie', v);
+    const res = await submit('memory-movie', {
+      name: v.name, email: v.email, botcheck,
+      rows: {
+        お名前: v.name, メールアドレス: v.email, 電話番号: v.tel,
+        希望するプラン: labelOf(planOptions, v.plan), 映像の用途: v.use, 希望する完成尺: v.length,
+        写真のおおよその枚数: v.photos, 動画素材の有無: labelOf(yesNo, v.hasVideo), 撮影の希望: labelOf(shootOptions, v.shoot),
+        希望納期: v.deadline, '要望・備考': v.notes,
+      },
+    });
     setSending(false);
     if (!res.ok) { setSendErr(res.message); return; }
     setDoneId(res.id); setStep(2); goTop();
@@ -120,6 +130,7 @@ function MemoryMovieFormInner() {
               label="上記を確認しました。入力内容をお見積もりの連絡に使うことに同意します。" />
           </div>
 
+          <Honeypot onChange={setBotcheck} />
           <div className="flex justify-end">
             <button type="submit" className={btn('primary', 'w-full sm:w-auto sm:min-w-64')}>入力内容を確認する</button>
           </div>

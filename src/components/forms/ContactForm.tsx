@@ -11,6 +11,7 @@ import { submit } from '@/lib/submit';
 import { btn } from '@/components/ui/primitives';
 import { ChoiceGroup, ConfirmList, Steps, TextArea, TextField, focusFirstError } from './fields';
 import { Done } from './Done';
+import { Honeypot } from './Honeypot';
 
 type Values = { type: string; name: string; email: string; subject: string; details: string };
 const empty: Values = { type: '', name: '', email: '', subject: '', details: '' };
@@ -34,6 +35,7 @@ function ContactFormInner() {
   const [sending, setSending] = useState(false);
   const [sendErr, setSendErr] = useState('');
   const [doneId, setDoneId] = useState('');
+  const [botcheck, setBotcheck] = useState(false);
   const formRef = useRef<HTMLFormElement>(null);
   const topRef = useRef<HTMLDivElement>(null);
 
@@ -63,7 +65,10 @@ function ContactFormInner() {
   };
   const send = async () => {
     setSending(true); setSendErr('');
-    const res = await submit('contact', { ...v, typeLabel: type?.label });
+    const res = await submit('contact', {
+      name: v.name, email: v.email, botcheck,
+      rows: { お問い合わせの種類: type?.label, お名前: v.name, メールアドレス: v.email, お問い合わせ内容: v.subject, '詳細・備考': v.details },
+    });
     setSending(false);
     if (!res.ok) { setSendErr(res.message); return; }
     setDoneId(res.id); setStep(2); goTop();
@@ -94,6 +99,7 @@ function ContactFormInner() {
           <TextField name="subject" label="お問い合わせ内容" required value={v.subject} onChange={onInput('subject')} onBlur={onBlur('subject')} error={errors.subject} placeholder="例）店舗のPR動画について相談したい" />
           <TextArea name="details" label="詳細・備考" value={v.details} onChange={onInput('details')} onBlur={onBlur('details')} error={errors.details}
             placeholder="時期、場所、ご予算の目安などがあればご記入ください" />
+          <Honeypot onChange={setBotcheck} />
           <div className="flex justify-end">
             <button type="submit" className={btn('primary', 'w-full sm:w-auto sm:min-w-64')}>入力内容を確認する</button>
           </div>

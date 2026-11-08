@@ -11,8 +11,14 @@ export const SHOW_DRAFT_MARKERS = false;
  */
 export const SHOW_DRAFTS = false;
 
-/** お問い合わせ・思い出ムービーのフォームの送信先が用意できているか。false の間は Instagram DM を案内 */
-export const FORMS_LIVE = false;
+/**
+ * フォームの送信先（Web3Forms のアクセスキー）。https://web3forms.com で受信用メールアドレスを登録すると届く。
+ * 公開してよい値（送信先メールアドレスはキーから分からない）。空のあいだは Instagram DM を案内する。
+ */
+export const FORM_ACCESS_KEY: string = 'f1beb9bc-34f9-44c8-9bc0-b795eda058cf';
+
+/** お問い合わせ・思い出ムービーのフォームを使うか（アクセスキーが入っていれば使う） */
+export const FORMS_LIVE = FORM_ACCESS_KEY !== '';
 
 /** デモ運用中か（注文・送信を実際に行わない）。本番連携後に false にする */
 export const DEMO_MODE = false;
