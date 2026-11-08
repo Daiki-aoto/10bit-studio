@@ -85,10 +85,10 @@ export const videoWorks: VideoWork[] = [
     subtitle: '〜中島の未来を描く挑戦！〜',
     description: 'YouTube チャンネル「中島おもろい人図鑑」のインタビュー映像。中島に移住し、島で ART BOMB を立ち上げた理由と、中島の未来に向けた挑戦を伺っています。',
     category: 'インタビュー',
-    credits: [],
+    credits: ['編集'],
     thumbnail: asset('/works/GKr61s4DxCA.jpg'),
     year: '2026',
-    services: ['interview'],
+    services: ['interview', 'youtube'],
   },
   {
     youtubeId: 'lmUmzNIeIW4',
@@ -96,10 +96,10 @@ export const videoWorks: VideoWork[] = [
     subtitle: '〜中島おもろい人図鑑②〜',
     description: 'YouTube チャンネル「中島おもろい人図鑑」のインタビュー映像。離島留学で岐阜から中島に移住した草分さんきょうだいの、島でのリアルな日常を紹介しています。',
     category: 'インタビュー',
-    credits: [],
+    credits: ['編集'],
     thumbnail: asset('/works/lmUmzNIeIW4.jpg'),
     year: '2026',
-    services: ['interview'],
+    services: ['interview', 'youtube'],
   },
 ];
 
