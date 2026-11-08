@@ -74,10 +74,10 @@ export const videoWorks: VideoWork[] = [
     subtitle: '〜グルメ・乗馬・アート！秋の島を満喫する1日〜',
     description: '愛媛県松山市沖に位置する中島の魅力を紹介する観光ガイド映像。島のグルメや乗馬、アートなどを通して、中島で過ごす秋の1日を映像で紹介しています。',
     category: '観光・地域紹介',
-    credits: [],
+    credits: ['撮影', '編集'],
     thumbnail: asset('/works/pej2fsbvRcI.jpg'),
     year: '2026',
-    services: ['local'],
+    services: ['local', 'youtube'],
   },
   {
     youtubeId: 'GKr61s4DxCA',
