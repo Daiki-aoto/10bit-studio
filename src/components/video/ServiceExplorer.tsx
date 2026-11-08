@@ -2,12 +2,16 @@
 
 import Link from 'next/link';
 import { useRef, useState } from 'react';
-import { X } from 'lucide-react';
+import { AtSign, X } from 'lucide-react';
 import { videoServices, videoWorks, localVideoWorks, youtubeUrl, type VideoServiceId } from '@/data/videoProduction';
 import { heroVideo } from '@/data/media';
+import { site } from '@/data/site';
 import { HeroVideo } from '@/components/ui/HeroVideo';
 import { btn } from '@/components/ui/primitives';
 import { YouTubePlayer } from './YouTubePlayer';
+
+/** 動画の代わりに Instagram へ案内するジャンル */
+const INSTAGRAM_SERVICES: VideoServiceId[] = ['short'];
 
 /** そのジャンルに当てはまる動画の数 */
 const countOf = (id: VideoServiceId) =>
@@ -45,7 +49,7 @@ export function ServiceExplorer() {
                 <span className={`font-latin text-sm font-semibold tracking-[.24em] ${on ? 'text-paper/80' : 'text-sea'}`}>{String(i + 1).padStart(2, '0')} ／ {s.en}</span>
                 <span className="mincho text-[17px] leading-relaxed">{s.title}</span>
                 <span className={`text-[12px] ${on ? 'text-paper/80' : 'text-ink-3'}`}>
-                  {n > 0 ? `映像 ${n}本を見る` : 'ご相談ください'}{on ? '　▲ 閉じる' : '　▼'}
+                  {n > 0 ? `映像 ${n}本を見る` : INSTAGRAM_SERVICES.includes(s.id) ? 'Instagramで見る' : 'ご相談ください'}{on ? '　▲ 閉じる' : '　▼'}
                 </span>
               </button>
             </li>
@@ -64,7 +68,15 @@ export function ServiceExplorer() {
               </button>
             </div>
 
-            {yt.length + local.length > 0 ? (
+            {INSTAGRAM_SERVICES.includes(service.id) && yt.length + local.length === 0 ? (
+              <div className="mt-4 grid gap-5">
+                <p className="leading-loose text-ink-2">SNS向けのショート動画は、Instagram（{site.links.instagramName}）でご覧いただけます。</p>
+                <a href={site.links.instagram} target="_blank" rel="noopener noreferrer" className={btn('primary', 'w-fit')}>
+                  <AtSign className="size-4" strokeWidth={1.5} aria-hidden />Instagram {site.links.instagramName} を見る
+                  <span className="sr-only">（新しいタブで開きます）</span>
+                </a>
+              </div>
+            ) : yt.length + local.length > 0 ? (
               <ul className="mt-6 grid gap-8 md:grid-cols-2">
                 {yt.map((w) => (
                   <li key={w.youtubeId}>
