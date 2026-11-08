@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import Link from 'next/link';
-import { postcards, credit, productSummary } from '@/data/postcards';
+import { postcards, productSummary } from '@/data/postcards';
 import { postcardPrice, shipping } from '@/data/pricing';
 import { Reveal, RiseText } from '@/components/ui/Reveal';
 import { ButtonLink, Container, Note } from '@/components/ui/primitives';
@@ -18,7 +18,7 @@ export default function PostcardsPage() {
   return (
     <>
       <Container className="pb-16 pt-14 lg:pt-20">
-        <Reveal><p className="eyebrow">Postcards ／ {credit}</p></Reveal>
+        <Reveal><p className="eyebrow">Postcards</p></Reveal>
         <div className="mt-6 grid gap-10 lg:grid-cols-[1.2fr_1fr] lg:items-end">
           <RiseText as="h1" lines={['島の風景を、', '一枚のはがきに。']} className="mincho text-[clamp(30px,4.6vw,56px)] leading-[1.5]" />
           <Reveal delay={300} className="space-y-4 text-ink-2">

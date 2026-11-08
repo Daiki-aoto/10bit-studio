@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
-import { postcards, credit, SET_ID } from '@/data/postcards';
+import { postcards, SET_ID } from '@/data/postcards';
 import { postcardPrice, shipping } from '@/data/pricing';
 import { Reveal, RiseText } from '@/components/ui/Reveal';
 import { Container, Note } from '@/components/ui/primitives';
@@ -17,7 +17,7 @@ export default function SetPage() {
     <>
       <Container className="grid gap-10 pb-16 pt-14 lg:grid-cols-[1.2fr_1fr] lg:items-end lg:pt-20">
         <div>
-          <Reveal><p className="eyebrow">All 10 Postcards Set ／ {credit}</p></Reveal>
+          <Reveal><p className="eyebrow">All 10 Postcards Set</p></Reveal>
           <RiseText as="h1" lines={['全10種類を、', 'ひとそろいで。']} className="mincho mt-6 text-[clamp(30px,4.6vw,56px)] leading-[1.5]" />
         </div>
         <Reveal delay={300} className="rounded-xl border border-charcoal bg-paper p-7">
