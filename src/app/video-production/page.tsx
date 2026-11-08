@@ -3,8 +3,6 @@ import { ExternalLink } from 'lucide-react';
 import { experience, videoFlow, videoPricing, videoWorks } from '@/data/videoProduction';
 import { WorkFeature } from '@/components/video/WorkFeature';
 import { ServiceExplorer } from '@/components/video/ServiceExplorer';
-import { HeroVideo } from '@/components/ui/HeroVideo';
-import { heroVideo } from '@/data/media';
 import { site, SHOW_DRAFTS } from '@/data/site';
 import { Reveal, RiseText } from '@/components/ui/Reveal';
 import { ButtonLink, Container, DraftBadge, SectionHeading } from '@/components/ui/primitives';
@@ -54,23 +52,7 @@ export default function VideoProductionPage() {
             <Reveal><ButtonLink href={site.links.portfolio} variant="ghost" arrow={false}>ポートフォリオ <ExternalLink className="size-4" strokeWidth={1.5} /></ButtonLink></Reveal>
           </div>
           <div className="mt-14 grid gap-24 sm:mt-20">
-            {videoWorks.map((w, i) => <WorkFeature key={w.youtubeId} work={w} index={i} />)}
-            {/* イベント撮影・記録映像（トップページと同じ動画） */}
-            <article>
-              <Reveal variant="img"><HeroVideo config={heroVideo} className="aspect-video" /></Reveal>
-              <Reveal className="mt-8 grid gap-8 border-t border-charcoal pt-8 lg:grid-cols-[180px_1fr] lg:gap-12">
-                <div className="flex gap-6 text-[13px] text-ink-2 lg:flex-col lg:gap-2">
-                  <span className="font-latin text-3xl font-semibold leading-none text-current">{String(videoWorks.length + 1).padStart(2, '0')}</span>
-                  <span className="tracking-wider">イベント撮影・記録映像</span>
-                  <span className="font-latin tracking-[.2em]">2026</span>
-                </div>
-                <div className="max-w-2xl">
-                  <h3 className="mincho text-[clamp(20px,2.2vw,28px)] leading-relaxed">大浦太鼓まつり 2026</h3>
-                  <p className="mt-5 text-[15px] leading-[2.1] text-ink-2">島のまつりの熱気を、撮影から編集まで手がけた記録映像です。</p>
-                  <p className="mt-4 text-[13px] text-ink-2">担当：撮影 ／ 編集</p>
-                </div>
-              </Reveal>
-            </article>
+            {videoWorks.filter((w) => w.featured).map((w, i) => <WorkFeature key={w.youtubeId} work={w} index={i} />)}
           </div>
           <Reveal className="mt-24">
             <div className="flex items-center gap-3"><h3 className="mincho text-xl">これまでの経験</h3><DraftBadge label="掲載可否を確認中" /></div>

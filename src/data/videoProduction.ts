@@ -65,6 +65,8 @@ export interface VideoWork {
   year?: string;
   /** 「対応できる業務」のどれに当てはまるか（カードを押すと表示される） */
   services: VideoServiceId[];
+  /** 「映像制作実績」に大きく載せるか（false なら業務カードの中だけに出る） */
+  featured?: boolean;
 }
 
 export const videoWorks: VideoWork[] = [
@@ -72,12 +74,13 @@ export const videoWorks: VideoWork[] = [
     youtubeId: 'pej2fsbvRcI',
     title: '『中島観光ガイド』この秋行きたい中島',
     subtitle: '〜グルメ・乗馬・アート！秋の島を満喫する1日〜',
-    description: '愛媛県松山市沖に位置する中島の魅力を紹介する観光ガイド映像。島のグルメや乗馬、アートなどを通して、中島で過ごす秋の1日を映像で紹介しています。',
+    description: '2026年10月17日に行われた「松山デザインウィーク in 中島」で上映された映像です。',
     category: '観光・地域紹介',
     credits: ['撮影', '編集'],
     thumbnail: asset('/works/pej2fsbvRcI.jpg'),
     year: '2026',
     services: ['local', 'youtube'],
+    featured: true,
   },
   {
     youtubeId: 'GKr61s4DxCA',
