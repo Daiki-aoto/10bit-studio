@@ -4,7 +4,8 @@ import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { ArrowRight, Loader2 } from 'lucide-react';
 import { inquiryTypes } from '@/data/contact';
-import { DEMO_MODE } from '@/data/site';
+import { DEMO_MODE, FORMS_LIVE } from '@/data/site';
+import { FormsNotice } from './FormsNotice';
 import { rules, validate } from '@/lib/validation';
 import { submit } from '@/lib/submit';
 import { btn } from '@/components/ui/primitives';
@@ -22,6 +23,11 @@ const schema = {
 };
 
 export function ContactForm() {
+  if (!FORMS_LIVE) return <FormsNotice topic="お問い合わせ" />;
+  return <ContactFormInner />;
+}
+
+function ContactFormInner() {
   const [step, setStep] = useState<0 | 1 | 2>(0);
   const [v, setV] = useState<Values>(empty);
   const [errors, setErrors] = useState<Partial<Record<keyof Values, string>>>({});

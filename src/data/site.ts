@@ -3,10 +3,19 @@
  * - `draft: true` の項目は「仮原稿／要確認」。公開前に本人が確認・修正する。
  * - SHOW_DRAFT_MARKERS を false にすると、画面上の「仮」表示を一括で消せる。
  */
-export const SHOW_DRAFT_MARKERS = true;
+export const SHOW_DRAFT_MARKERS = false;
+
+/**
+ * 仮原稿（本人の言葉として読まれる仮の文章）と仮素材の枠を表示するか。
+ * false：インタビュー・読み物・FAQ回答・仮の写真枠などを隠して公開（本人確認が済んだら true に）
+ */
+export const SHOW_DRAFTS = false;
+
+/** お問い合わせ・思い出ムービーのフォームの送信先が用意できているか。false の間は Instagram DM を案内 */
+export const FORMS_LIVE = false;
 
 /** デモ運用中か（注文・送信を実際に行わない）。本番連携後に false にする */
-export const DEMO_MODE = true;
+export const DEMO_MODE = false;
 
 /**
  * ポストカードの決済方法（NEXT_PUBLIC_PAYMENTS）

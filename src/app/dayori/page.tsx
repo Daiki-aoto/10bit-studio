@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { ArrowRight, HandHeart, Info } from 'lucide-react';
 import { dayori, publishedIssues, latestIssue, issueLabel, activities, pageSrc, getIssue } from '@/data/dayori';
+import { SHOW_DRAFTS } from '@/data/site';
 import { Reveal, RiseText } from '@/components/ui/Reveal';
 import { ButtonLink, Container, DraftBadge, SectionHeading } from '@/components/ui/primitives';
 import { IssueCard, IssueCover } from '@/components/dayori/IssueCard';
@@ -83,6 +84,7 @@ export default function DayoriPage() {
         <p className="flex items-start gap-2 text-[13px] leading-relaxed text-ink-2"><Info className="mt-0.5 size-4 shrink-0" aria-hidden />{dayori.disclaimer}</p>
       </Container>
 
+{SHOW_DRAFTS && (<>
       {/* 特集風の読み物 */}
       <section className="py-20 sm:py-28">
         <Container>
@@ -110,12 +112,20 @@ export default function DayoriPage() {
               );
             })}
           </div>
-          <Reveal className="mx-auto mt-28 max-w-3xl border-y border-charcoal py-12 text-center">
+
+        </Container>
+      </section>
+
+      </>)}
+
+      {!SHOW_DRAFTS && (
+        <Container className="py-16 sm:py-20">
+          <Reveal className="mx-auto max-w-3xl border-y border-charcoal py-12 text-center">
             <p className="mincho text-[clamp(20px,2.4vw,28px)] leading-loose">「{dayori.backCoverQuote}」</p>
             <p className="mt-4 text-[13px] text-ink-3">— {issueLabel(latest)} 裏表紙より</p>
           </Reveal>
         </Container>
-      </section>
+      )}
 
       {/* 発行実績 */}
       <section className="bg-sand/50 py-20 sm:py-28">
@@ -160,7 +170,7 @@ export default function DayoriPage() {
                     </Link>
                   ) : (
                     <div className="grid h-72 place-items-center bg-paper-2 p-6 text-center text-sm text-ink-2">
-                      {a.href ? <Link href={a.href} className="link-line">ポストカードを見る →</Link> : <span>制作風景の写真<br /><span className="text-[11px] tracking-widest text-ink-3">仮素材・差し替え予定</span></span>}
+                      {a.href ? <Link href={a.href} className="link-line">ポストカードを見る →</Link> : (SHOW_DRAFTS ? <span>制作風景の写真<br /><span className="text-[11px] tracking-widest text-ink-3">仮素材・差し替え予定</span></span> : <Link href={`/dayori/${latest.slug}`} className="block w-40"><IssueCover issue={latest} sizes="160px" /></Link>)}
                     </div>
                   )}
                   <h3 className="mincho text-lg">{a.title}</h3>

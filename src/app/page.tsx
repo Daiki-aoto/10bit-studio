@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { Camera, Clapperboard, PenTool } from 'lucide-react';
-import { site, profile, profileText } from '@/data/site';
+import { site, profile, profileText, SHOW_DRAFTS } from '@/data/site';
 import { postcards, credit, productSummary } from '@/data/postcards';
 import { postcardPrice } from '@/data/pricing';
 import { memoryMovie, plans } from '@/data/memoryMovie';
@@ -136,7 +136,9 @@ export default function Home() {
       {/* ④ ABOUT BIT */}
       <section className="bg-sand/60 py-28 sm:py-36">
         <Container className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
-          <Reveal variant="img"><PlaceholderMedia label="ビットのプロフィール写真" ratio="4 / 5" className="max-w-md" /></Reveal>
+          <Reveal variant="img">{SHOW_DRAFTS
+            ? <PlaceholderMedia label="ビットのプロフィール写真" ratio="4 / 5" className="max-w-md" />
+            : <Image src={postcards.find((p) => p.id === 'michi')!.image} alt="中島の道の風景（撮影：ビット）" sizes="(min-width: 1024px) 45vw, 100vw" className="h-auto w-full max-w-xl shadow-[0_24px_44px_-28px_rgb(0_0_0/.45)]" />}</Reveal>
           <div>
             <SectionHeading en="About Bit" ja={profileText.lead} />
             <Reveal className="mt-8 space-y-5 text-[15px] leading-[2.1] text-ink-2">

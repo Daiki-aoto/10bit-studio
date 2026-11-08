@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import { Check } from 'lucide-react';
 import { memoryMovie, plans, options, flow, faq } from '@/data/memoryMovie';
+import { SHOW_DRAFTS } from '@/data/site';
 import { yen } from '@/lib/pricing';
 import { Reveal, RiseText } from '@/components/ui/Reveal';
 import { ButtonLink, Container, DraftBadge, Note, PlaceholderMedia, SectionHeading } from '@/components/ui/primitives';
@@ -16,7 +17,7 @@ export default function MemoryMoviePage() {
     <>
       {/* ヒーロー */}
       <section className="bg-sea-deep text-paper">
-        <Container className="grid gap-12 py-16 lg:grid-cols-[1fr_1.2fr] lg:items-center lg:py-24">
+        <Container className={`grid gap-12 py-16 lg:items-center lg:py-24 ${SHOW_DRAFTS ? 'lg:grid-cols-[1fr_1.2fr]' : ''}`}>
           <div>
             <Reveal><p className="eyebrow text-paper/70">Memory Movie</p></Reveal>
             <RiseText as="h1" lines={['大切な思い出を、', '未来に残す。']} className="mincho mt-6 text-[clamp(30px,4.4vw,54px)] leading-[1.5]" />
@@ -28,12 +29,13 @@ export default function MemoryMoviePage() {
               </div>
             </Reveal>
           </div>
-          <Reveal variant="img" delay={200}>
+          {SHOW_DRAFTS && <Reveal variant="img" delay={200}>
             <PlaceholderMedia kind="video" label="完成した思い出ムービーのサンプル動画" ratio="16 / 9" className="rounded-lg text-ink-2" />
-          </Reveal>
+          </Reveal>}
         </Container>
       </section>
 
+{SHOW_DRAFTS && (<>
       {/* 制作前・制作後 */}
       <section className="py-24 sm:py-32">
         <Container>
@@ -51,6 +53,8 @@ export default function MemoryMoviePage() {
           </div>
         </Container>
       </section>
+
+      </>)}
 
       {/* 料金プラン */}
       <section id="plans" className="scroll-mt-20 bg-paper-2 py-24 sm:py-32">
@@ -107,6 +111,7 @@ export default function MemoryMoviePage() {
         </Container>
       </section>
 
+{SHOW_DRAFTS && (<>
       {/* FAQ */}
       <section className="bg-sand/50 py-24 sm:py-32">
         <Container className="grid gap-12 lg:grid-cols-[1fr_1.8fr]">
@@ -127,6 +132,8 @@ export default function MemoryMoviePage() {
           </div>
         </Container>
       </section>
+
+      </>)}
 
       {/* 受注フォーム */}
       <section id="form" className="scroll-mt-20 py-24 sm:py-32">

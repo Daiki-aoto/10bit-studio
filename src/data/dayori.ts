@@ -87,7 +87,7 @@ export const issues: Issue[] = [
     pageRatio: 0.7072,
     status: 'published',
     verified: false, // 発行月（10月？）を確認
-    onlinePermission: 'pending',
+    onlinePermission: 'confirmed', // 掲載許可：本人確認済み（2026-11）
   },
   {
     slug: 'vol02',
@@ -113,7 +113,7 @@ export const issues: Issue[] = [
     pageRatio: 0.7084,
     status: 'published',
     verified: false, // 発行月とページ順（受け取った画像から推定）を確認
-    onlinePermission: 'pending',
+    onlinePermission: 'confirmed', // 掲載許可：本人確認済み（2026-11）
   },
   {
     slug: 'vol01',
@@ -137,7 +137,7 @@ export const issues: Issue[] = [
     pageRatio: 0.7083,
     status: 'published',
     verified: true, // 創刊 2026年4月（事実）。紙面は元PDF（page1〜8.pdf）から
-    onlinePermission: 'pending',
+    onlinePermission: 'confirmed', // 掲載許可：本人確認済み（2026-11）
   },
 ];
 

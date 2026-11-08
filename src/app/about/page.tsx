@@ -1,7 +1,8 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
 import { AtSign, ExternalLink } from 'lucide-react';
-import { profile, profileText, interview, timeline, tools, site } from '@/data/site';
+import { profile, profileText, interview, timeline, tools, site, SHOW_DRAFTS } from '@/data/site';
 import { postcards } from '@/data/postcards';
 import { Reveal, RiseText } from '@/components/ui/Reveal';
 import { ButtonLink, Container, DraftBadge, PlaceholderMedia } from '@/components/ui/primitives';
@@ -32,7 +33,9 @@ export default function AboutPage() {
             </Reveal>
           </div>
           <Reveal variant="img" delay={200}>
-            <PlaceholderMedia label="プロフィール写真（中島での撮影風景など）" ratio="4 / 5" />
+            {SHOW_DRAFTS
+              ? <PlaceholderMedia label="プロフィール写真（中島での撮影風景など）" ratio="4 / 5" />
+              : <figure><Image src={postcards.find((p) => p.id === 'keshiki')!.image} alt="中島の入り江の風景（撮影：ビット）" sizes="(min-width: 1024px) 45vw, 100vw" placeholder="blur" className="h-auto w-full" /><figcaption className="mt-3 text-[12px] text-ink-3">撮影：ビット（中島）</figcaption></figure>}
           </Reveal>
         </Container>
       </header>
@@ -55,8 +58,8 @@ export default function AboutPage() {
         <figcaption className="mx-auto mt-4 max-w-5xl text-[13px] text-ink-3">活動拠点の中島。写真は ポストカード No.{island.no}『{island.title}』より</figcaption>
       </Reveal>
 
-      {/* インタビュー */}
-      <Container className="py-24 sm:py-32">
+      {/* インタビュー（仮原稿：本人確認後に SHOW_DRAFTS で表示） */}
+      {SHOW_DRAFTS && <Container className="py-24 sm:py-32">
         <div className="mx-auto max-w-3xl">
           <Reveal className="mb-12 flex items-center gap-3"><p className="eyebrow">Interview</p><DraftBadge label="仮原稿・本人確認待ち" /></Reveal>
           <div className="space-y-16">
@@ -71,7 +74,8 @@ export default function AboutPage() {
             ))}
           </div>
         </div>
-      </Container>
+      </Container>}
+      {!SHOW_DRAFTS && <div className="py-12 sm:py-16" />}
 
       {/* これまでの活動 */}
       <section className="bg-paper-2 py-24 sm:py-32">
@@ -79,7 +83,7 @@ export default function AboutPage() {
           <Reveal>
             <p className="eyebrow">Works &amp; History</p>
             <h2 className="mincho mt-3 text-2xl">これまでの活動</h2>
-            <p className="mt-5 text-sm leading-relaxed text-ink-2">掲載内容は本人確認のうえ公開します。<DraftBadge className="ml-1" label="要確認" /></p>
+            {SHOW_DRAFTS && <p className="mt-5 text-sm leading-relaxed text-ink-2">掲載内容は本人確認のうえ公開します。<DraftBadge className="ml-1" label="要確認" /></p>}
             <p className="mt-8 text-sm text-ink-2">主な使用ツール</p>
             <p className="mt-1 font-latin text-lg tracking-wider">{tools.join(' / ')}</p>
           </Reveal>
@@ -100,11 +104,11 @@ export default function AboutPage() {
           <Reveal>
             <p className="eyebrow">Portfolio</p>
             <h2 className="mincho mt-3 text-2xl">制作実績</h2>
-            <p className="mt-5 leading-loose text-ink-2">写真・映像の制作実績は、ポートフォリオでご覧いただけます。このサイトへの掲載は、作品の確認後に追加します。</p>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2">
+            <p className="mt-5 leading-loose text-ink-2">写真・映像の制作実績は、ポートフォリオでご覧いただけます。映像作品は<Link href="/video-production#works" className="underline">映像制作のページ</Link>でも紹介しています。</p>
+            {SHOW_DRAFTS && <div className="mt-8 grid gap-4 sm:grid-cols-2">
               <PlaceholderMedia label="制作実績の写真・映像" ratio="16 / 10" />
               <PlaceholderMedia label="制作実績の写真・映像" kind="video" ratio="16 / 10" />
-            </div>
+            </div>}
           </Reveal>
           <Reveal className="flex flex-col justify-end gap-4">
             <a href={site.links.portfolio} target="_blank" rel="noopener noreferrer" className="group flex items-center justify-between rounded-lg border border-charcoal p-6 transition hover:bg-charcoal hover:text-paper">

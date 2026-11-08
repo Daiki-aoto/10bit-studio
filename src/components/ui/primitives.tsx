@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import type { ComponentPropsWithoutRef, ReactNode } from 'react';
 import { ArrowRight, ImageOff, Play } from 'lucide-react';
-import { SHOW_DRAFT_MARKERS } from '@/data/site';
+import { SHOW_DRAFT_MARKERS, SHOW_DRAFTS } from '@/data/site';
 import { Reveal } from './Reveal';
 
 /* ---------- ボタン ---------- */
@@ -57,6 +57,7 @@ export function TbdBadge({ className = '' }: { className?: string }) {
 /** 写真・動画が未提供の場所に置く枠。仮素材であることを明示する */
 export function PlaceholderMedia({ label, kind = 'photo', ratio = '4 / 3', className = '' }:
   { label: string; kind?: 'photo' | 'video'; ratio?: string; className?: string }) {
+  if (!SHOW_DRAFTS) return null; // 公開時は仮素材の枠を出さない
   const Icon = kind === 'video' ? Play : ImageOff;
   return (
     <div role="img" aria-label={`仮素材：${label}`}

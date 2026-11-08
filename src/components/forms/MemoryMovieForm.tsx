@@ -3,7 +3,8 @@
 import { useRef, useState } from 'react';
 import { CircleAlert, Loader2 } from 'lucide-react';
 import { plans, uses } from '@/data/memoryMovie';
-import { DEMO_MODE } from '@/data/site';
+import { DEMO_MODE, FORMS_LIVE } from '@/data/site';
+import { FormsNotice } from './FormsNotice';
 import { rules, validate } from '@/lib/validation';
 import { submit } from '@/lib/submit';
 import { btn } from '@/components/ui/primitives';
@@ -41,6 +42,11 @@ const schema = {
 const labelOf = (opts: readonly { value: string; label: string }[], v: string) => opts.find((o) => o.value === v)?.label ?? v;
 
 export function MemoryMovieForm() {
+  if (!FORMS_LIVE) return <FormsNotice topic="思い出ムービーのご相談" />;
+  return <MemoryMovieFormInner />;
+}
+
+function MemoryMovieFormInner() {
   const [step, setStep] = useState<0 | 1 | 2>(0);
   const [v, setV] = useState<Values>(empty);
   const [errors, setErrors] = useState<Partial<Record<keyof Values, string>>>({});
