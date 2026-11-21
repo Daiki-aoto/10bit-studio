@@ -34,7 +34,7 @@ export const calendar = {
   name: '2027 NAKAJIMA PHOTO CALENDAR',
   nameJa: '中島フォトカレンダー 2027',
   /** 税込 */
-  price: 2000,
+  price: 1800,
   concept: '中島の風景を、毎月飾る',
   photographer: '尾藤大起（ビット）',
   cover,

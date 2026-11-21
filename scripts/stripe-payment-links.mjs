@@ -240,7 +240,7 @@ for (const amount of SUPPORT_MONTHLY) {
 // ---- 2027 NAKAJIMA PHOTO CALENDAR（2026-11-21 本人決定）----
 // 価格・送料は src/data/calendar.ts と同じ値にする。
 // CALENDAR_LIMIT … 受け付ける「注文の回数」の上限（Stripe の支払いリンクの制限は冊数ではなく注文回数で数える）。null なら上限なし。
-const CALENDAR = { price: 2000, letterpack: 430 };
+const CALENDAR = { price: 1800, letterpack: 430 };
 const CALENDAR_LIMIT = 30; // 限定30部（1回1冊なので、注文30件＝30部）
 
 /** 送料（名前と金額が同じものがあれば再利用） */
