@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { site, profile } from '@/data/site';
 import { postcardPrice, SHIPPING_FEE, payment, shipTiming, returns } from '@/data/pricing';
 import { ContactLink, LegalPage, LegalSection, LegalTable } from '@/components/ui/LegalPage';
+import { calendar, CALENDAR_ON_SALE, CALENDAR_SHIPPING, calendarShipTiming } from '@/data/calendar';
 
 export const metadata: Metadata = {
   title: '特定商取引法に基づく表記',
@@ -35,6 +36,20 @@ export default function TokushohoPage() {
           { label: '注文のキャンセル', value: '商品の性質上、お支払い確定後のキャンセルはお受けできません。お届け先の誤りなどは、発送前であれば対応できる場合がありますので、お早めにご連絡ください。' },
         ]} />
       </LegalSection>
+
+      {CALENDAR_ON_SALE && (
+        <LegalSection title="カレンダー（2027 NAKAJIMA PHOTO CALENDAR）の販売について">
+          <LegalTable rows={[
+            { label: '販売価格', value: <>1冊 {yen(calendar.price)}（税込）<br />商品ページに表示している金額がお支払い金額です。</> },
+            { label: '商品代金以外の必要料金', value: <>送料（1回のご注文ごと）：{CALENDAR_SHIPPING.map((s) => `${s.label} ${s.fee === 0 ? '0円' : yen(s.fee)}`).join('／')}</> },
+            { label: 'お支払い方法', value: payment.methods.join('、') + '（Stripe の決済ページでお支払いいただきます）' },
+            { label: 'お支払いの時期', value: 'ご注文の手続き時にお支払いが確定します。' },
+            { label: '商品の引き渡し時期', value: <>{calendarShipTiming}<br />レターパックライトは郵便受けへのお届けのため、お届け日の指定はできません。</> },
+            { label: '返品・交換', value: returns.note },
+            { label: '注文のキャンセル', value: '商品の性質上、お支払い確定後のキャンセルはお受けできません。お届け先の誤りなどは、発送前であれば対応できる場合がありますので、お早めにご連絡ください。' },
+          ]} />
+        </LegalSection>
+      )}
 
       <LegalSection title="中島だよりの応援について">
         <LegalTable rows={[

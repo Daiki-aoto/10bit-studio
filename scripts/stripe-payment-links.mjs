@@ -8,7 +8,7 @@
  *                                                     … 決済後にサイトの「ありがとう」ページへ戻す
  *   npm run stripe:links -- --live --site https://…   … 本番用（.env.local の STRIPE_LIVE_SECRET_KEY を使う）
  *
- * 作るリンク：絵柄ごとの1枚（10本）・3枚セット（絵柄を3つ選ぶ）・全10種類セット
+ * 作るリンク：絵柄ごとの1枚（10本）・3枚セット（絵柄を3つ選ぶ）・全10種類セット・2027カレンダー
  *            中島だよりの応援（1回：500/1,000/3,000円・自由な金額、毎月：500/1,000円）
  * 価格は src/data/pricing.ts と同じ値を使う（下の PRICES を変えたら pricing.ts も合わせる）。
  */
@@ -205,6 +205,8 @@ async function ensureSupportLink(key, priceInfo, monthly, existing) {
     const cur = await stripe.paymentLinks.retrieve(existing.id, { expand: ['line_items'] });
     if (cur.line_items?.data?.[0]?.price?.id === priceInfo.price) {
       const { line_items, ...updatable } = params;
+      // 既存リンクの更新では subscription_data の説明文は変えられない（作成時のみ）
+      if (updatable.subscription_data) { const { description, ...rest } = updatable.subscription_data; updatable.subscription_data = rest; }
       const link = await stripe.paymentLinks.update(existing.id, updatable);
       return { id: link.id, url: link.url, ...priceInfo };
     }
@@ -233,6 +235,63 @@ for (const amount of SUPPORT_MONTHLY) {
   const price = await ensureSupportPrice(k, `中島だより 毎月の応援 月${amount.toLocaleString()}円`, { amount, monthly: true }, prevSupport.monthly?.[amount]);
   result.support.monthly[amount] = await ensureSupportLink(k, price, true, prevSupport.monthly?.[amount]);
   console.log(`✓ 毎月の応援 月${amount}円`);
+}
+
+// ---- 2027 NAKAJIMA PHOTO CALENDAR（2026-11-21 本人決定）----
+// 価格・送料は src/data/calendar.ts と同じ値にする。
+// CALENDAR_LIMIT … 受け付ける「注文の回数」の上限（Stripe の支払いリンクの制限は冊数ではなく注文回数で数える）。null なら上限なし。
+const CALENDAR = { price: 2000, letterpack: 430 };
+const CALENDAR_LIMIT = 30; // 限定30部（1回1冊なので、注文30件＝30部）
+
+/** 送料（名前と金額が同じものがあれば再利用） */
+async function ensureRate(existingId, name, amount) {
+  if (existingId) {
+    const r = await stripe.shippingRates.retrieve(existingId);
+    if (r.active && r.display_name === name && r.fixed_amount?.amount === amount) return r.id;
+  }
+  return (await stripe.shippingRates.create({
+    display_name: name, type: 'fixed_amount', fixed_amount: { amount, currency: 'jpy' }, metadata: { source: 'github-pages', product: 'calendar2027' },
+  })).id;
+}
+{
+  const prevCal = prevMode.calendar ?? {};
+  const rateLetter = await ensureRate(prevCal.rateLetterpack, 'レターパックライト（追跡あり）', CALENDAR.letterpack);
+  const rateHand = await ensureRate(prevCal.rateHandover, '中島で受け取る（手渡し・送料なし）', 0);
+  const price = await ensurePrice('calendar2027', '2027 NAKAJIMA PHOTO CALENDAR', '中島の風景を、毎月飾る。A4 壁掛け・28ページ（写真：尾藤大起）',
+    CALENDAR.price, prevCal);
+  const params = {
+    line_items: [{ price: price.price, quantity: 1 }], // 1回のご注文で1冊
+    shipping_options: [{ shipping_rate: rateLetter }, { shipping_rate: rateHand }],
+    shipping_address_collection: { allowed_countries: ['JP'] },
+    phone_number_collection: { enabled: true },
+    billing_address_collection: 'auto',
+    submit_type: 'pay',
+    custom_text: {
+      shipping_address: { message: `レターパックライト（${CALENDAR.letterpack}円・追跡あり）でお送りします。中島で受け取る場合は、下の送り方で「中島で受け取る」を選んでください（受け取りの日時・場所は、ご注文後にメールでご相談します）。` },
+      submit: { message: 'お支払い完了後、ご登録のメールアドレスに領収書が届きます。ご注文確定後7日以内に発送します。' },
+    },
+    metadata: { product: 'calendar2027', source: 'github-pages' },
+    payment_intent_data: { metadata: { product: 'calendar2027' }, description: 'カレンダー注文（2027 NAKAJIMA PHOTO CALENDAR）' },
+    after_completion: { type: 'hosted_confirmation', hosted_confirmation: {
+      custom_message: 'ご注文ありがとうございます。ご注文確定後7日以内に発送します。「中島で受け取る」を選ばれた方には、受け取りの日時・場所のご相談をメールでお送りします。' } },
+    restrictions: CALENDAR_LIMIT ? { completed_sessions: { limit: CALENDAR_LIMIT } } : undefined,
+  };
+  if (!params.restrictions) delete params.restrictions;
+  let link;
+  if (prevCal.id) {
+    const cur = await stripe.paymentLinks.retrieve(prevCal.id, { expand: ['line_items'] });
+    if (cur.line_items?.data?.[0]?.price?.id === price.price) {
+      const { line_items, ...updatable } = params;
+      // 価格が同じなら設定だけ更新（冊数の選択はなし＝1回1冊）
+      updatable.line_items = [{ id: cur.line_items.data[0].id, quantity: 1, adjustable_quantity: { enabled: false } }];
+      link = await stripe.paymentLinks.update(prevCal.id, updatable);
+    } else {
+      await stripe.paymentLinks.update(prevCal.id, { active: false });
+    }
+  }
+  link ??= await stripe.paymentLinks.create(params);
+  result.calendar = { id: link.id, url: link.url, ...price, rateLetterpack: rateLetter, rateHandover: rateHand };
+  console.log(`✓ カレンダー ${CALENDAR.price}円（送料：レターパックライト ${CALENDAR.letterpack}円／中島で受け取り 0円${CALENDAR_LIMIT ? `／上限 ${CALENDAR_LIMIT}件` : ''}）`);
 }
 
 const out = { ...prev, [mode]: result, updatedAt: new Date().toISOString() };

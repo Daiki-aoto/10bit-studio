@@ -116,9 +116,17 @@
         "product": "prod_VadGHDA4r0kpEA",
         "price": "price_1UZS0QBH1CErKcp5jT3yU5x9"
       }
+    },
+    "calendar": {
+      "id": "plink_1Ue2PWBH1CErKcp5xR7d4OWI",
+      "url": "https://buy.stripe.com/test_bJe28q66tdMT6Pn3Gd8IU0i",
+      "product": "prod_VfN98xpwjBCv4B",
+      "price": "price_1Ue2PWBH1CErKcp5vxepTE1D",
+      "rateLetterpack": "shr_1Ue2PVBH1CErKcp5NV9lzhAR",
+      "rateHandover": "shr_1Ue2PVBH1CErKcp5Uc22Rnen"
     }
   },
-  "updatedAt": "2026-11-08T09:04:19.145Z",
+  "updatedAt": "2026-11-21T01:38:30.195Z",
   "live": {
     "shippingRate": "shr_1UZJbfBOGvkwutWlzg3evSAZ",
     "single": {

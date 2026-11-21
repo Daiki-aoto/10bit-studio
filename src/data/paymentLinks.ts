@@ -8,7 +8,7 @@ import { SET_ID } from './postcards';
 
 type Link = { url: string } | null | undefined;
 type Support = { once?: Record<string, Link>; monthly?: Record<string, Link>; free?: Link };
-type Set = { single?: Record<string, Link>; bundle3?: Link; setAll?: Link; support?: Support };
+type Set = { single?: Record<string, Link>; bundle3?: Link; setAll?: Link; support?: Support; calendar?: Link };
 
 const mode = process.env.NEXT_PUBLIC_STRIPE_LINKS_MODE === 'live' ? 'live' : 'test';
 const links = ((data as Record<string, unknown>)[mode] ?? {}) as Set;
@@ -26,3 +26,6 @@ export const bundle3Link = () => links.bundle3?.url ?? null;
 export const setAllLink = () => links.setAll?.url ?? null;
 /** 商品ID（カードID または 全10種類セット）から支払いリンクを返す */
 export const linkFor = (id: string) => (id === SET_ID ? setAllLink() : singleLink(id));
+
+/** 2027 NAKAJIMA PHOTO CALENDAR の支払いリンク */
+export const calendarLink = () => links.calendar?.url ?? null;
