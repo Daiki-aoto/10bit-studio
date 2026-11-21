@@ -1,4 +1,3 @@
-import { CALENDAR_ON_SALE } from './calendar';
 /**
  * サイト全体の基本情報。
  * - `draft: true` の項目は「仮原稿／要確認」。公開前に本人が確認・修正する。
@@ -51,9 +50,8 @@ export const site = {
 export const nav = [
   { href: '/', label: 'Home', ja: 'ホーム' },
   { href: '/about', label: 'About Bit', ja: 'ビットについて' },
-  { href: '/postcards', label: 'Postcards', ja: 'ポストカード' },
-  // カレンダーは販売中（src/data/calendar.ts の CALENDAR_ON_SALE）のときだけメニューに出す
-  ...(CALENDAR_ON_SALE ? [{ href: '/calendar', label: 'Calendar', ja: 'カレンダー' }] as const : []),
+  // ショップ（ポストカード・カレンダー）。/postcards・/calendar を開いているときも選択中にする（2026-11-21 本人決定）
+  { href: '/shop', label: 'Shop', ja: 'ショップ', match: ['/shop', '/postcards', '/calendar'] },
   { href: '/dayori', label: 'Dayori', ja: '中島だより' },
   { href: '/memory-movie', label: 'Memory Movie', ja: '思い出ムービー' },
   { href: '/video-production', label: 'Video Production', ja: '映像制作' },

@@ -38,7 +38,11 @@ export function Header() {
   }, [open]);
 
   const count = ready ? summary.itemCount : 0;
-  const isActive = (href: string) => (href === '/' ? pathname === '/' : pathname.startsWith(href));
+  const isActive = (href: string) => {
+    if (href === '/') return pathname === '/';
+    const item = nav.find((n) => n.href === href) as { match?: readonly string[] } | undefined;
+    return (item?.match ?? [href]).some((m) => pathname.startsWith(m));
+  };
 
   return (
     <>
@@ -92,7 +96,7 @@ export function Header() {
             ))}
           </ul>
           <div className="mt-8 grid gap-3">
-            <Link href="/postcards" className="rounded-full bg-sea-deep py-4 text-center text-paper">ポストカードを見る</Link>
+            <Link href="/shop" className="rounded-full bg-sea-deep py-4 text-center text-paper">ショップを見る</Link>
             <Link href="/memory-movie" className="rounded-full border border-charcoal py-4 text-center">思い出ムービーを相談する</Link>
           </div>
         </nav>
